@@ -2,11 +2,19 @@
   "packageDirectories": [
     {
       "path": "source/formulaforce",
-      "default": true
+      "default": true,
+      "package": "FormulaForce App v3",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "FormulaForce App Version 3"
     }
   ],
   "name": "salesforce-enterprise-architecture",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "58.0"
+  "sourceApiVersion": "58.0",
+  "packageAliases": {
+    "FormulaForce App v3": "0Ho2w0000004DabCAE",
+    "FormulaForce App v3@0.1.0-1": "04t2w000009RdoyAAC"
+  }
 }
