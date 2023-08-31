@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Standard User Permissions for a Formula Force User</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Formula Force Standard User</label>
+    <permissionSets>Formula_Force_App_Permissions</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>
