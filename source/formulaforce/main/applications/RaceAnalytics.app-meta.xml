@@ -2,22 +2,21 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
         <headerColor>#0070D2</headerColor>
-        <logo>Screen_Shot_20230831_at_73638_pm</logo>
+        <logo>Screen_Shot_20230901_at_12706_pm</logo>
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>Formula Force App v3</description>
+    <description>Formula Force v3 Race Analytics App</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
-    <label>Formula Force</label>
+    <label>Race Analytics</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
-    <tabs>Season__c</tabs>
-    <tabs>Driver__c</tabs>
-    <tabs>Race__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Formula_Force_UtilityBar</utilityBar>
+    <utilityBar>Race_Analytics_UtilityBar</utilityBar>
 </CustomApplication>

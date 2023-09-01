@@ -61,7 +61,11 @@
         <type>CustomApplication</type>
     </appMenuItems>
     <appMenuItems>
-        <name>Formula_Force</name>
+        <name>RaceManagement</name>
+        <type>CustomApplication</type>
+    </appMenuItems>
+    <appMenuItems>
+        <name>RaceAnalytics</name>
         <type>CustomApplication</type>
     </appMenuItems>
 </AppMenu>
