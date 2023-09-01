@@ -102,6 +102,16 @@
             <field>Total_DNFs__c</field>
             <table>Season__c.Races__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PolePositionLapTime__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FastestLapBy__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
         <masterLabel>Races</masterLabel>
     </sections>
     <sections>
@@ -158,6 +168,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>DNF__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Qualification1LapTime__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Qualification2LapTime__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Qualification3LapTime__c</field>
             <table>Season__c.Races__r.Contestants__r</table>
         </columns>
         <masterLabel>Contestants</masterLabel>

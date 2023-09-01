@@ -4,6 +4,17 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Driver</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Only Active Drivers can be Contestants in a Race</errorMessage>
+        <filterItems>
+            <field>Driver__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <infoMessage>Only Drivers whose status is active are permitted</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Driver__c</referenceTo>
     <relationshipLabel>Contestants</relationshipLabel>
     <relationshipName>Contestants</relationshipName>
