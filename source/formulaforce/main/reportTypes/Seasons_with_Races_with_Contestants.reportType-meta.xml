@@ -54,6 +54,11 @@
             <field>LastActivityDate</field>
             <table>Season__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Year__c</field>
+            <table>Season__c</table>
+        </columns>
         <masterLabel>Seasons</masterLabel>
     </sections>
     <sections>
@@ -90,6 +95,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastActivityDate</field>
+            <table>Season__c.Races__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Total_DNFs__c</field>
             <table>Season__c.Races__r</table>
         </columns>
         <masterLabel>Races</masterLabel>
@@ -138,6 +148,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Driver__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Season__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DNF__c</field>
             <table>Season__c.Races__r.Contestants__r</table>
         </columns>
         <masterLabel>Contestants</masterLabel>
