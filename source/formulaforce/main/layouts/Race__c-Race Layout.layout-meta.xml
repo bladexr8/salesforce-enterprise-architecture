@@ -22,6 +22,10 @@
                 <behavior>Readonly</behavior>
                 <field>PolePositionLapTime__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FastestLapBy__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
@@ -78,6 +82,10 @@
         <fields>NAME</fields>
         <fields>Driver__c</fields>
         <relatedList>Contestant__c.Race__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>RaceData__c.Race__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

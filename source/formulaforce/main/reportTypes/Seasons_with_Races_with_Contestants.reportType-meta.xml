@@ -107,6 +107,11 @@
             <field>PolePositionLapTime__c</field>
             <table>Season__c.Races__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>FastestLapBy__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
         <masterLabel>Races</masterLabel>
     </sections>
     <sections>
