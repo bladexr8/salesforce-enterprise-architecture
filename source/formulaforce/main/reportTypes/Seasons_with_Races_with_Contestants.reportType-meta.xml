@@ -185,6 +185,16 @@
             <field>Qualification3LapTime__c</field>
             <table>Season__c.Races__r.Contestants__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ChampionshipPoints__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DriverRace__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
         <masterLabel>Contestants</masterLabel>
     </sections>
 </ReportType>
