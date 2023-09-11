@@ -1,6 +1,6 @@
 public with sharing class RaceService {
     
-    public static Map<Id, List<RaceServiceResults.ProvisionalResult> calculateProvisionResults(Set<Id> raceIds) {
+    public static Map<Id, List<RaceServiceResults.ProvisionalResult>> calculateProvisionResults(Set<Id> raceIds) {
         return service().calculateProvisionResults(raceIds);
     }
 
