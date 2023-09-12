@@ -1,16 +1,46 @@
 {
   "packageDirectories": [
     {
+      "path": "source/fflib-apex-mocks",
+      "default": false,
+      "package": "FormulaForce FFLib Mocks",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "FormulaForce FFLib Mocking Support"
+    },
+    {
+      "path": "source/fflib-apex-common",
+      "default": false,
+      "package": "FormulaForce FFLib Commons",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "FormulaForce FFLib Commons Support",
+      "dependencies": [
+        {
+          "package": "FormulaForce FFLib Mocks@0.1.0-1"
+        }
+      ]
+    },
+    {
       "path": "source/formulaforce",
       "default": true,
       "package": "FormulaForce App v3",
       "versionName": "ver 0.1",
       "versionNumber": "0.1.0.NEXT",
-      "versionDescription": "FormulaForce App Version 3"
+      "versionDescription": "FormulaForce App Version 3",
+      "dependencies": [
+        {
+          "package": "FormulaForce FFLib Mocks@0.1.0-1"
+        },
+        {
+          "package": "FormulaForce FFLib Commons@0.1.0-1"
+        }
+      ]
     }
   ],
   "name": "salesforce-enterprise-architecture",
   "namespace": "",
+  "pushPackageDirectoriesSequentially": true,
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "58.0",
   "packageAliases": {
@@ -18,6 +48,11 @@
     "FormulaForce App v3@0.1.0-1": "04t2w000009RdoyAAC",
     "FormulaForce App v3@0.1.0-2": "04t2w000009RduOAAS",
     "FormulaForce App v3@0.1.0-3": "04t2w000009RdudAAC",
-    "FormulaForce App v3@0.1.0-4": "04t2w000009RdvCAAS"
+    "FormulaForce App v3@0.1.0-4": "04t2w000009RdvCAAS",
+    "FormulaForce FFLib Commons": "0Ho2w0000004DcSCAU",
+    "FormulaForce FFLib Mocks": "0Ho2w0000004DcXCAU",
+    "FormulaForce FFLib Mocks@0.1.0-1": "04t2w000009Re2wAAC",
+    "FormulaForce FFLib Commons@0.1.0-1": "04t2w000009Re31AAC",
+    "FormulaForce App v3@0.1.0-5": "04t2w000009Re36AAC"
   }
 }

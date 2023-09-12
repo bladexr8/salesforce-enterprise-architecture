@@ -7,7 +7,17 @@
     <description>Allow access to Race Analytics App</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contestant__c.ChampionshipPoints__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contestant__c.DNF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contestant__c.DriverRace__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -43,6 +53,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Driver__c.Nationality__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Driver__c.TwitterHandle__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
