@@ -14,7 +14,12 @@
       "package": "FormulaForce FFLib Commons",
       "versionName": "ver 0.1",
       "versionNumber": "0.1.0.NEXT",
-      "versionDescription": "FormulaForce FFLib Commons Support"
+      "versionDescription": "FormulaForce FFLib Commons Support",
+      "dependencies": [
+        {
+          "package": "FormulaForce FFLib Mocks@0.1.0-1"
+        }
+      ]
     },
     {
       "path": "source/formulaforce",
@@ -25,10 +30,10 @@
       "versionDescription": "FormulaForce App Version 3",
       "dependencies": [
         {
-          "package": "FormulaForce FFLib Commons"
+          "package": "FormulaForce FFLib Mocks@0.1.0-1"
         },
         {
-          "package": "FormulaForce FFLib Mocks"
+          "package": "FormulaForce FFLib Commons@0.1.0-1"
         }
       ]
     }
@@ -45,6 +50,8 @@
     "FormulaForce App v3@0.1.0-3": "04t2w000009RdudAAC",
     "FormulaForce App v3@0.1.0-4": "04t2w000009RdvCAAS",
     "FormulaForce FFLib Commons": "0Ho2w0000004DcSCAU",
-    "FormulaForce FFLib Mocks": "0Ho2w0000004DcXCAU"
+    "FormulaForce FFLib Mocks": "0Ho2w0000004DcXCAU",
+    "FormulaForce FFLib Mocks@0.1.0-1": "04t2w000009Re2wAAC",
+    "FormulaForce FFLib Commons@0.1.0-1": "04t2w000009Re31AAC"
   }
 }
