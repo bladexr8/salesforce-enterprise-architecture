@@ -1,0 +1,71 @@
+{
+  "drivers": [
+    {
+      "name": "Max Verstappen",
+      "nationality": "Dutch",
+      "driverId": "50",
+      "twitterHandle": "Max33Verstappen"
+    },
+    {
+      "name": "Lando Norris",
+      "nationality": "British",
+      "driverId": "51",
+      "twitterHandle": "LandoNorris"
+    }
+  ],
+  "teams": [
+    {
+      "name": "Red Bull Racing Honda RBPT",
+      "nationality": "Austrian",
+      "homeBase": "Milton Keynes, Great Britain",
+      "activeSince": "2005",
+      "teamBoss": "Christian Horner",
+      "teamId": "100"
+    },
+    {
+      "name": "McLaren Mercedes",
+      "nationality": "British",
+      "homeBase": "Woking, Great Britain",
+      "activeSince": "1966",
+      "teamBoss": "Andrea Stella",
+      "teamId": "101"
+    }
+  ],
+  "seasons": [
+    {
+      "year": "2023",
+      "races": [
+        {
+          "round": 1,
+          "name": "Bahrain",
+          "contestants": [
+            {
+              "driverId": "50",
+              "teamId": "100",
+              "carNumber": "1",
+              "lapsCompleted": "57",
+              "championshipPoints": 25,
+              "dnf": false,
+              "racePosition": 1,
+              "qualification1LapTime": 123,
+              "qualification2LapTime": 124,
+              "qualification3LapTime": 125
+            },
+            {
+              "driverId": "51",
+              "teamId": "101",
+              "carNumber": "4",
+              "lapsCompleted": "55",
+              "championshipPoints": 0,
+              "dnf": false,
+              "racePosition": 17,
+              "qualification1LapTime": 123,
+              "qualification2LapTime": 124,
+              "qualification3LapTime": 125
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
