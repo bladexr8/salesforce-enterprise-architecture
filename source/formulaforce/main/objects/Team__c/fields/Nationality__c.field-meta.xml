@@ -4,13 +4,17 @@
     <externalId>false</externalId>
     <label>Nationality</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
+            <value>
+                <fullName>Austrian</fullName>
+                <default>false</default>
+                <label>Austrian</label>
+            </value>
             <value>
                 <fullName>Brazilian</fullName>
                 <default>false</default>
@@ -20,6 +24,11 @@
                 <fullName>British</fullName>
                 <default>false</default>
                 <label>British</label>
+            </value>
+            <value>
+                <fullName>Dutch</fullName>
+                <default>false</default>
+                <label>Dutch</label>
             </value>
             <value>
                 <fullName>Finnish</fullName>
@@ -40,16 +49,6 @@
                 <fullName>Spanish</fullName>
                 <default>false</default>
                 <label>Spanish</label>
-            </value>
-            <value>
-                <fullName>Dutch</fullName>
-                <default>false</default>
-                <label>Dutch</label>
-            </value>
-            <value>
-                <fullName>Austrian</fullName>
-                <default>false</default>
-                <label>Austrian</label>
             </value>
         </valueSetDefinition>
     </valueSet>

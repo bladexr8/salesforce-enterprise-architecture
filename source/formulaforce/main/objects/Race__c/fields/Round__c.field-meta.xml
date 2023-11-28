@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>GridPosition__c</fullName>
+    <fullName>Round__c</fullName>
     <externalId>false</externalId>
-    <label>Grid Position</label>
+    <label>Round</label>
     <precision>2</precision>
     <required>false</required>
     <scale>0</scale>

@@ -4,7 +4,9 @@
       "name": "Max Verstappen",
       "nationality": "Dutch",
       "driverId": "50",
-      "twitterHandle": "Max33Verstappen"
+      "twitterHandle": "Max33Verstappen",
+      "fiaLicense": true,
+      "active": true
     },
     {
       "name": "Lando Norris",
