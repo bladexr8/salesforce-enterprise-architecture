@@ -5,6 +5,7 @@ public class Application {
         new fflib_Application.UnitOfWorkFactory(
             new List<SObjectType> {
                 Driver__c.SObjectType,
+                Team__c.SObjectType,
                 Season__c.SObjectType,
                 Race__c.SObjectType,
                 Contestant__c.SObjectType

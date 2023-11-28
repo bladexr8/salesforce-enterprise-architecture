@@ -12,9 +12,7 @@
       "name": "Lando Norris",
       "nationality": "British",
       "driverId": "51",
-      "twitterHandle": "LandoNorris",
-      "fiaLicense": true,
-      "active": true
+      "twitterHandle": "LandoNorris"
     }
   ],
   "teams": [
