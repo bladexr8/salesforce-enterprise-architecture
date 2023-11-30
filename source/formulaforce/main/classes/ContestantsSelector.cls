@@ -13,7 +13,13 @@ public inherited sharing class ContestantsSelector extends fflib_SObjectSelector
             Contestant__c.Qualification3LapTime__c,
             Contestant__c.Race__c,
             Contestant__c.RacePosition__c,
-            Contestant__c.RaceTime__c
+            Contestant__c.RaceTime__c,
+            Contestant__c.Car__c,
+            Contestant__c.Car_Number__c,
+            Contestant__c.DriverRace__c,
+            Contestant__c.Laps_Completed__c,
+            Contestant__c.Season__c,
+            Contestant__c.Team__c
         };
     }
 
