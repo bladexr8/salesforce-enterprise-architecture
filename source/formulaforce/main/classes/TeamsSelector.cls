@@ -4,7 +4,7 @@ public inherited sharing class TeamsSelector extends fflib_SObjectSelector {
 		return new List<Schema.SObjectField> {
 			Team__c.Id,
 			Team__c.Name,
-			Team__c.TestingDistance__c,
+			Team__c.Testing_Distance__c,
             Team__c.Active_Since__c,
             Team__c.Home_Base__c,
             Team__c.Nationality__c,

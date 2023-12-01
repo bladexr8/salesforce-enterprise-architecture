@@ -5,7 +5,7 @@ public inherited sharing class DriversSelector extends fflib_SObjectSelector
 		return new List<Schema.SObjectField> {
 			Driver__c.Id,
 			Driver__c.Name,
-			Driver__c.FIASuperLicense__c,
+			Driver__c.FIA_Super_License__c,
 			Driver__c.Team__c,
             Driver__c.Active__c,
             Driver__c.Nationality__c,

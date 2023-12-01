@@ -8,13 +8,13 @@ public inherited sharing class Drivers extends ApplicationDomain implements Comp
 	 * Applies defaults when creating new Driver records
 	 **/
 	public override void onApplyDefaults() {
-		for(Driver__c driver : (List<Driver__c>) Records) {
-			if(String.isBlank(driver.ShortName__c)) {
+		//for(Driver__c driver : (List<Driver__c>) Records) {
+			//if(String.isBlank(driver.ShortName__c)) {
 				// Upper case first three letters of drivers last name
-				String lastName = driver.Name.substringAfterLast(' ');
+				//String lastName = driver.Name.substringAfterLast(' ');
 				//driver.ShortName__c = lastName.left(3).toUpperCase();
-			}
-		}
+			//}
+		//}
 	}
 
 	/**
@@ -27,7 +27,7 @@ public inherited sharing class Drivers extends ApplicationDomain implements Comp
 			ComplianceService.VerifyResult license = new ComplianceService.VerifyResult();
 			license.ComplianceCode = '4.1';
 			license.RecordId = driver.Id;
-			license.passed = driver.FIASuperLicense__c;
+			license.passed = driver.FIA_Super_License__c;
 			license.failureReason = license.passed ? null : 'Driver must have a FIA Super License.';
 			compliances.add(license);
 		}

@@ -1,8 +1,8 @@
 public class Application {
     
     // Configure and create the UnitOfWorkFactory for this Application
-    public static final fflib_Application.UnitOfWorkFactory UnitOfWork = 
-        new fflib_Application.UnitOfWorkFactory(
+    public static final Application.UnitOfWorkFactory UnitOfWork = 
+        new Application.UnitOfWorkFactory(
             new List<SObjectType> {
                 Driver__c.SObjectType,
                 Team__c.SObjectType,
