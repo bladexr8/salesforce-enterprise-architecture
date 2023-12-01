@@ -7,7 +7,17 @@
     <description>Allow access to Race Analytics App</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Car__c.Weight__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contestant__c.Car_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contestant__c.Car__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
