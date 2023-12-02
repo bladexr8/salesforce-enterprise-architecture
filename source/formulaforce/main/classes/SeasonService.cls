@@ -32,9 +32,25 @@ public with sharing class SeasonService {
 				Name = driverData.name,
 				DriverId__c = driverData.driverId,
 				Nationality__c = driverData.nationality,
-				TwitterHandle__c = driverData.twitterHandle);
+				TwitterHandle__c = driverData.twitterHandle,
+				FIA_Super_License__c = driverData.fiaLicense,
+				Active__c = driverData.active);
 			uow.registerNew(driver);
 			driversById.put(driver.DriverId__c, driver);
+		}
+		Map<String, Team__c> teamsById = new Map<String, Team__c>();
+		for(TeamData teamData : seasonsData.teams) {
+			// Create Team__c record
+			Team__c team = new Team__c(
+				Name = teamData.name,
+				Nationality__c = teamData.nationality,
+				Home_Base__c = teamData.nationality,
+				Active_Since__c = teamData.activeSince,
+				Team_Boss__c = teamData.teamBoss,
+				Team_Id__c = teamData.teamId
+			);
+			uow.registerNew(team);
+			teamsById.put(team.Team_Id__c, team);
 		}
 		for(SeasonData seasonData : seasonsData.seasons) {
 			// Create Season__c record
@@ -44,20 +60,26 @@ public with sharing class SeasonService {
 			uow.registerNew(season);
 			for(RaceData raceData : seasonData.races) {
 				// Create Race__c record
-				Race__c race = new Race__c(Name = raceData.name);				
+				Race__c race = new Race__c(
+					Name = raceData.name,
+					Round__c = raceData.round);				
 				uow.registerNew(race, Race__c.Season__c, season);
 				for(ContestantData contestantData : raceData.contestants) {
 					// Create Contestant__c record
 					Contestant__c contestant = new Contestant__c(
-							RacePosition__c = contestantData.racePosition,
+							Car_Number__c = contestantData.carNumber,
+							Laps_Completed__c = Integer.valueOf(contestantData.lapsCompleted),
 							ChampionshipPoints__c = contestantData.championshipPoints,
 							DNF__c = contestantData.dnf,
+							RacePosition__c = contestantData.racePosition,													
 							Qualification1LapTime__c = contestantData.qualification1LapTime,
 							Qualification2LapTime__c = contestantData.qualification2LapTime,
 							Qualification3LapTime__c = contestantData.qualification3LapTime);
 					uow.registerNew(contestant, Contestant__c.Race__c, race);
 					uow.registerRelationship(contestant, 
 						Contestant__c.Driver__c, driversById.get(contestantData.driverId));
+					uow.registerRelationship(contestant, 
+						Contestant__c.Team__c, teamsById.get(contestantData.teamId));
 				}
 			}
 		}
@@ -73,6 +95,7 @@ public with sharing class SeasonService {
 
 	public class SeasonsData {
 		public List<DriverData> drivers;
+		public List<TeamData> teams;
 		public List<SeasonData> seasons;
 	}
 
@@ -80,8 +103,19 @@ public with sharing class SeasonService {
 		public String name;
 		public String nationality;
 		public String driverId;		
-		public String twitterHandle;		
+		public String twitterHandle;
+		public Boolean fiaLicense;
+		public Boolean active;		
 
+	}
+
+	public class TeamData {
+		public string name;
+		public string nationality;
+		public string homeBase;
+		public string activeSince;
+		public string teamBoss;
+		public string teamId;
 	}
 
 	public class SeasonData {
@@ -97,13 +131,15 @@ public with sharing class SeasonService {
 
 	public class ContestantData {
 		public String driverId;
-		public Integer racePosition;
+		public String teamId;
+		public String carNumber;
+		public String lapsCompleted;
 		public Integer championshipPoints;
 		public Boolean dnf;
+		public Integer racePosition;
 		public Integer qualification1LapTime;
 		public Integer qualification2LapTime;
 		public Integer qualification3LapTime;
 	}
-
 
 }

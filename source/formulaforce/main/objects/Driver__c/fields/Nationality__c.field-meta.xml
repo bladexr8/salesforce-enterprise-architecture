@@ -41,6 +41,16 @@
                 <default>false</default>
                 <label>Spanish</label>
             </value>
+            <value>
+                <fullName>Dutch</fullName>
+                <default>false</default>
+                <label>Dutch</label>
+            </value>
+            <value>
+                <fullName>Austrian</fullName>
+                <default>false</default>
+                <label>Austrian</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

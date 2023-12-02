@@ -1,29 +1,18 @@
 public class ContestantService {
     
     public static void awardChampionshipPoints(Set<Id> contestantIds) {
+	    
+        // Awarding championships points should only be done by this class on behalf of the user
+        fflib_ISObjectUnitOfWork uow = Application.UnitOfWork.newInstance(AccessLevel.SYSTEM_MODE);
 
-        // Apply championship points to selected contestants
-        fflib_ISObjectUnitOfWork uow = Application.UnitOfWork.newInstance();
-        awardChampionshipPoints(uow, new ContestantsSelector().selectById(contestantIds));
-        uow.commitWork();
-    }
+		// Apply championship points to given contestants		
+		Contestants contestants = 
+			new Contestants(
+				new ContestantsSelector().selectById(contestantIds));
+		contestants.awardChampionshipPoints(uow);
 
-    public static void awardChampionshipPoints(fflib_ISObjectUnitOfWork uow, List<Contestant__c> contestants) {
-
-        // Apply championship points to given contestants
-        Map<Integer, ChampionshipPoint__mdt> pointsByTrackPosition = 
-            new ChampionshipPointsSelector().selectAllByTrackPosition();
-        for (Contestant__c contestant : contestants) {
-            // determine points to award for given position
-            ChampionshipPoint__mdt pointsForPostion = 
-                pointsByTrackPosition.get(Integer.valueOf(contestant.RacePosition__c));
-            if (pointsForPostion != null) {
-                // Apply points and register for update with uow
-                contestant.ChampionshipPoints__c = pointsForPostion.PointsAwarded__c;
-                uow.registerDirty(contestant);
-            }
-        }
-    }
+		uow.commitWork();
+	}
 
     public static void retireFromRace(List<RaceRetirement> retirements) {
         throw new ContestantServiceException('Not implemented');

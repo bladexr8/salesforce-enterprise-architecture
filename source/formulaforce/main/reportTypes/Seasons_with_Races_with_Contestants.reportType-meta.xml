@@ -112,6 +112,16 @@
             <field>FastestLapBy__c</field>
             <table>Season__c.Races__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Round__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Year__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
         <masterLabel>Races</masterLabel>
     </sections>
     <sections>
@@ -193,6 +203,21 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>DriverRace__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Team__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Car_Number__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Laps_Completed__c</field>
             <table>Season__c.Races__r.Contestants__r</table>
         </columns>
         <masterLabel>Contestants</masterLabel>
