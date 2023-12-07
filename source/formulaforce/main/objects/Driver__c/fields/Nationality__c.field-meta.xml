@@ -51,6 +51,61 @@
                 <default>false</default>
                 <label>Austrian</label>
             </value>
+            <value>
+                <fullName>Monegasque</fullName>
+                <default>false</default>
+                <label>Monegasque</label>
+            </value>
+            <value>
+                <fullName>Australian</fullName>
+                <default>false</default>
+                <label>Australian</label>
+            </value>
+            <value>
+                <fullName>Chinese</fullName>
+                <default>false</default>
+                <label>Chinese</label>
+            </value>
+            <value>
+                <fullName>Canadian</fullName>
+                <default>false</default>
+                <label>Canadian</label>
+            </value>
+            <value>
+                <fullName>Danish</fullName>
+                <default>false</default>
+                <label>Danish</label>
+            </value>
+            <value>
+                <fullName>German</fullName>
+                <default>false</default>
+                <label>German</label>
+            </value>
+            <value>
+                <fullName>Thai</fullName>
+                <default>false</default>
+                <label>Thai</label>
+            </value>
+            <value>
+                <fullName>American</fullName>
+                <default>false</default>
+                <label>American</label>
+            </value>
+            <value>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+                <label>Japanese</label>
+            </value>
+            <value>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+                <label>New Zealand</label>
+            </value>
+            <value>
+                <fullName>Italian</fullName>
+                <default>false</default>
+                <label>Italian</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
