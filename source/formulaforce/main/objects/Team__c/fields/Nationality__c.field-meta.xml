@@ -50,6 +50,26 @@
                 <default>false</default>
                 <label>Spanish</label>
             </value>
+            <value>
+                <fullName>Italian</fullName>
+                <default>false</default>
+                <label>Italian</label>
+            </value>
+            <value>
+                <fullName>German</fullName>
+                <default>false</default>
+                <label>German</label>
+            </value>
+            <value>
+                <fullName>Swiss</fullName>
+                <default>false</default>
+                <label>Swiss</label>
+            </value>
+            <value>
+                <fullName>American</fullName>
+                <default>false</default>
+                <label>American</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
