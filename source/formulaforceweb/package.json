@@ -15,9 +15,16 @@
     "stage:prod-compat": "yarn build:prod-compat && yarn start"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
+    "express-session": "^1.17.3",
+    "jsforce": "^1.11.1",
     "lightning-base-components": "^1.21.1-alpha",
     "lwc": "5.0.0",
-    "lwr": "0.11.9"
+    "lwr": "0.11.9",
+    "pg": "^8.11.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-routes-express": "^3.3.2",
+    "swagger-ui-express": "^5.0.0"
   },
   "engines": {
     "node": ">=16.0.0"
