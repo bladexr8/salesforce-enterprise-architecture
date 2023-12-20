@@ -5,14 +5,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "clean": "rm -rf node_modules __lwr_cache__ site",
-    "dev": "lwr dev",
-    "dev:compat": "lwr dev --mode compat",
-    "build": "lwr build --clean",
-    "build:prod-compat": "lwr build --clean --mode prod-compat",
-    "start": "lwr start",
-    "stage": "yarn build && yarn start",
-    "stage:prod-compat": "yarn build:prod-compat && yarn start"
+    "clean": "rm -rf __lwr_cache__",
+    "dev": "NODE_ENV=development node ./src/server/server.js",
+    "build": "node ./scripts/copy-slds.mjs",
+    "start": "node ./src/server/server.js",
+    "insert:race:predictions": "node ./scripts/insert-race-predictions.js"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
@@ -27,7 +24,9 @@
     "swagger-ui-express": "^5.0.0"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=16.0.0 <19",
+    "express-session": "^1.16.2",
+    "jsforce": "^1.9.2"
   },
   "volta": {
     "node": "18.16.1"
