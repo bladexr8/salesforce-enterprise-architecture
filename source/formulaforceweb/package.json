@@ -33,6 +33,7 @@
     "node": "18.16.1"
   },
   "devDependencies": {
-    "@salesforce-ux/design-system": "^2.22.2"
+    "@salesforce-ux/design-system": "^2.22.2",
+    "cpx": "^1.5.0"
   }
 }
