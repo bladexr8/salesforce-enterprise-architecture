@@ -129,6 +129,8 @@ public with sharing class SeasonService {
 	public class RaceData {
 		public Integer round;
 		public String name;
+		public String status;
+		public Date raceDate;
 		public List<ContestantData> contestants;
 	}
 
