@@ -12,6 +12,6 @@ public with sharing class FLSDemoController {
 
     @AuraEnabled
     public static Race__c getRace(Id raceId) {
-        return [SELECT Status__c, FastestLapBy__c FROM Race WHERE Id = :raceId];
+        return [SELECT Status__c, FastestLapBy__c FROM Race__c WHERE Id = :raceId];
     }
 }
