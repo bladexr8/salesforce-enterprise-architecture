@@ -122,6 +122,11 @@
             <field>Year__c</field>
             <table>Season__c.Races__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Race_Date__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
         <masterLabel>Races</masterLabel>
     </sections>
     <sections>

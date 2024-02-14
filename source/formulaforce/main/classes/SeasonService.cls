@@ -62,7 +62,10 @@ public with sharing class SeasonService {
 				// Create Race__c record
 				Race__c race = new Race__c(
 					Name = raceData.name,
-					Round__c = raceData.round);				
+					Round__c = raceData.round,
+					Status__c = raceData.status,
+					Race_Date__c = raceData.raceDate
+					);				
 				uow.registerNew(race, Race__c.Season__c, season);
 				for(ContestantData contestantData : raceData.contestants) {
 					// Create Contestant__c record

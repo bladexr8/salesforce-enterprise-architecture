@@ -274,6 +274,8 @@
         {
           "round": 1,
           "name": "Bahrain",
+          "status": "Finished",
+          "raceDate": "2023-03-05",
           "contestants": [
             {
               "driverId": "50",
@@ -304,6 +306,8 @@
         {
           "round": 2,
           "name": "Saudi Arabia",
+          "status": "Finished",
+          "raceDate": "2023-03-19",
           "contestants": [
             {
               "driverId": "50",
@@ -334,6 +338,8 @@
         {
           "round": 3,
           "name": "Australia",
+          "status": "Finished",
+          "raceDate": "2023-04-02",
           "contestants": [
             {
               "driverId": "50",
@@ -364,6 +370,8 @@
         {
           "round": 4,
           "name": "Azerbaijan",
+          "status": "Finished",
+          "raceDate": "2023-04-30",
           "contestants": [
             {
               "driverId": "50",
@@ -394,6 +402,8 @@
         {
           "round": 5,
           "name": "Miami",
+          "status": "Finished",
+          "raceDate": "2023-05-07",
           "contestants": [
             {
               "driverId": "50",
@@ -424,6 +434,8 @@
         {
           "round": 6,
           "name": "Monaco",
+          "status": "Finished",
+          "raceDate": "2023-05-28",
           "contestants": [
             {
               "driverId": "50",
@@ -454,6 +466,8 @@
         {
           "round": 7,
           "name": "Spain",
+          "status": "Finished",
+          "raceDate": "2023-06-04",
           "contestants": [
             {
               "driverId": "50",
@@ -484,6 +498,8 @@
         {
           "round": 8,
           "name": "Canada",
+          "status": "Finished",
+          "raceDate": "2023-06-18",
           "contestants": [
             {
               "driverId": "50",
@@ -514,6 +530,8 @@
         {
           "round": 9,
           "name": "Austria",
+          "status": "Finished",
+          "raceDate": "2023-07-02",
           "contestants": [
             {
               "driverId": "50",
@@ -544,6 +562,8 @@
         {
           "round": 10,
           "name": "Great Britain",
+          "status": "Finished",
+          "raceDate": "2023-07-09",
           "contestants": [
             {
               "driverId": "50",
@@ -574,6 +594,8 @@
         {
           "round": 11,
           "name": "Hungary",
+          "status": "Finished",
+          "raceDate": "2023-07-23",
           "contestants": [
             {
               "driverId": "50",
@@ -604,6 +626,8 @@
         {
           "round": 12,
           "name": "Belgium",
+          "status": "Finished",
+          "raceDate": "2023-07-30",
           "contestants": [
             {
               "driverId": "50",
@@ -634,6 +658,8 @@
         {
           "round": 13,
           "name": "Netherlands",
+          "status": "Finished",
+          "raceDate": "2023-08-27",
           "contestants": [
             {
               "driverId": "50",
@@ -664,6 +690,8 @@
         {
           "round": 14,
           "name": "Italy",
+          "status": "Finished",
+          "raceDate": "2023-09-03",
           "contestants": [
             {
               "driverId": "50",
@@ -694,6 +722,8 @@
         {
           "round": 15,
           "name": "Singapore",
+          "status": "Finished",
+          "raceDate": "2023-09-17",
           "contestants": [
             {
               "driverId": "50",
@@ -724,6 +754,8 @@
         {
           "round": 16,
           "name": "Japan",
+          "status": "Finished",
+          "raceDate": "2023-09-24",
           "contestants": [
             {
               "driverId": "50",
@@ -754,6 +786,8 @@
         {
           "round": 17,
           "name": "Qatar",
+          "status": "Finished",
+          "raceDate": "2023-10-08",
           "contestants": [
             {
               "driverId": "50",
@@ -784,6 +818,8 @@
         {
           "round": 18,
           "name": "United States",
+          "status": "Finished",
+          "raceDate": "2023-10-22",
           "contestants": [
             {
               "driverId": "50",
@@ -814,6 +850,8 @@
         {
           "round": 19,
           "name": "Mexico",
+          "status": "Finished",
+          "raceDate": "2023-10-29",
           "contestants": [
             {
               "driverId": "50",
@@ -844,6 +882,8 @@
         {
           "round": 20,
           "name": "Brazil",
+          "status": "Finished",
+          "raceDate": "2023-11-05",
           "contestants": [
             {
               "driverId": "50",
@@ -874,6 +914,8 @@
         {
           "round": 21,
           "name": "Las Vegas",
+          "status": "Finished",
+          "raceDate": "2023-11-18",
           "contestants": [
             {
               "driverId": "50",
@@ -904,6 +946,8 @@
         {
           "round": 22,
           "name": "Abu Dhabi",
+          "status": "Finished",
+          "raceDate": "2023-11-26",
           "contestants": [
             {
               "driverId": "50",
