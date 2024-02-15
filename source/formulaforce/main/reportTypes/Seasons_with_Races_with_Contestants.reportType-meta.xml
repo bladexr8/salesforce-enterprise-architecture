@@ -127,6 +127,21 @@
             <field>Race_Date__c</field>
             <table>Season__c.Races__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>StartDate__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EndDate__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Location__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
         <masterLabel>Races</masterLabel>
     </sections>
     <sections>

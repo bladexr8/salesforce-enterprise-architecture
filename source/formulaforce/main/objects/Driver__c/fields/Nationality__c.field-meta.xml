@@ -106,6 +106,16 @@
                 <default>false</default>
                 <label>Italian</label>
             </value>
+            <value>
+                <fullName>Russian</fullName>
+                <default>false</default>
+                <label>Russian</label>
+            </value>
+            <value>
+                <fullName>Swedish</fullName>
+                <default>false</default>
+                <label>Swedish</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
