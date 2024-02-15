@@ -273,6 +273,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Race_Overview</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Race__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
