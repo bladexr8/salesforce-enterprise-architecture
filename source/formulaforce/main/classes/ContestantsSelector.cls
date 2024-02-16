@@ -50,7 +50,7 @@ public inherited sharing class ContestantsSelector extends fflib_SObjectSelector
 
     public Map<Id, List<Summary>> selectByRaceIdWithContestantSummary(Set<Id> raceIds) {
 
-        Map<Id, List<Summary>> summariesByRaceId = new Map<Id, List<Summary>();
+        Map<Id, List<Summary>> summariesByRaceId = new Map<Id, List<Summary>>();
 
         for (Contestant__c contestant : 
             Database.query(
@@ -158,8 +158,8 @@ public inherited sharing class ContestantsSelector extends fflib_SObjectSelector
             // Compare a compound of the points and team, e.g. 025Mercedes vs 010Ferrari
             Standing compareA = (Standing) compare;
             Standing compareB = this;
-            Integer compareAPoints  compareA.Points == null ? 0 : compareA.Points;
-            Integer compareBPoints  compareB.Points == null ? 0 : compareB.Points;
+            Integer compareAPoints  = compareA.Points == null ? 0 : compareA.Points;
+            Integer compareBPoints  = compareB.Points == null ? 0 : compareB.Points;
             String compareACompound = String.valueOf(compareAPoints).leftPad(3).replace(' ', '0') + compareA.Team;
             String compareBCompound = String.valueOf(compareBPoints).leftPad(3).replace(' ', '0') + compareB.Team;
             return compareACompound.compareTo(compareBCompound);
