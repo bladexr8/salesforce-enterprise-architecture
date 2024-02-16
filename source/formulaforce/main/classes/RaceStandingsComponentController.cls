@@ -17,7 +17,7 @@ public with sharing class RaceStandingsComponentController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
-        return null;
+        //return null;
     }
 
     public class RaceStanding {

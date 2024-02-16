@@ -20,8 +20,8 @@ public inherited sharing class ContestantsSelector extends fflib_SObjectSelector
             Contestant__c.Laps_Completed__c,
             Contestant__c.Season__c,
             Contestant__c.Team__c,
-            Contestant.RetirementReason__c,
-            Contestant.Win__c
+            Contestant__c.RetirementReason__c,
+            Contestant__c.Win__c
         };
     }
 

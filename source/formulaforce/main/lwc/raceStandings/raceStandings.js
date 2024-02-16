@@ -1,6 +1,7 @@
 import { LightningElement, wire, track } from 'lwc';
 import getStandings from '@salesforce/apex/RaceStandingsComponentController.getStandings';
 
+// columns for data table
 const columns = [
     { label: '', fieldName: 'Position', type: 'number', fixedWidth: 70 },
     { label: 'Driver', fieldName: 'Driver' },
