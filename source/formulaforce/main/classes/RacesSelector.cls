@@ -23,4 +23,10 @@ public inherited sharing class RacesSelector extends fflib_SObjectSelector {
 		return (List<Race__c>) Database.query(
 			racesQueryFactory.setCondition('Id in :raceIds').toSOQL());
 	}
+
+	public List<Race__c> selectAllForCurrentYear() {
+        String currentYear = '2016'; // Hard coded to match sample data included in Chatper 9
+        return (List<Race__c>) Database.query(
+            newQueryFactory().setCondition('Season__r.Name = :currentYear').toSOQL());
+	}
 }
