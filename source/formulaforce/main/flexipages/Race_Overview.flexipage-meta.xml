@@ -13,16 +13,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;Race Overview Column 2&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText2</identifier>
+                <componentName>raceCalendar</componentName>
+                <identifier>c_raceCalendar</identifier>
             </componentInstance>
         </itemInstances>
         <name>region2</name>
@@ -31,16 +23,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>decorate</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>richTextValue</name>
-                    <value>&lt;p&gt;Race Overview Column 3&lt;/p&gt;</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:richText</componentName>
-                <identifier>flexipage_richText3</identifier>
+                <componentName>raceResults</componentName>
+                <identifier>c_raceResults</identifier>
             </componentInstance>
         </itemInstances>
         <name>region3</name>
