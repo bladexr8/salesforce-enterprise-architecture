@@ -3,8 +3,18 @@ public inherited sharing class RacesSelector extends fflib_SObjectSelector {
 	public List<Schema.SObjectField> getSObjectFieldList() {
 		return new List<Schema.SObjectField> {
 			Race__c.Id,
-			Race__c.Name
-			//Race__c.Status__c
+			Race__c.EndDate__c,
+			Race__c.FastestLapBy__c,
+			Race__c.Location__c,
+			Race__c.Name,
+			Race__c.PolePositionLapTime__c,
+			Race__c.Race_Date__c,
+			Race__c.Round__c,
+			Race__c.Season__c,
+			Race__c.StartDate__c,
+			Race__c.Status__c,
+			Race__c.Total_DNFs__c,
+			Race__c.Year__c
 		};
 	}
 
