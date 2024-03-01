@@ -15,6 +15,7 @@
     <label>Race Management</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
+    <tabs>Race_Overview</tabs>
     <tabs>Season__c</tabs>
     <tabs>Driver__c</tabs>
     <tabs>Team__c</tabs>

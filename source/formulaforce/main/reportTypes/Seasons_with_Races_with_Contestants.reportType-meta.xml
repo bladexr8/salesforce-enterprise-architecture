@@ -127,6 +127,21 @@
             <field>Race_Date__c</field>
             <table>Season__c.Races__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>StartDate__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EndDate__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Location__c</field>
+            <table>Season__c.Races__r</table>
+        </columns>
         <masterLabel>Races</masterLabel>
     </sections>
     <sections>
@@ -223,6 +238,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Laps_Completed__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RetirementReason__c</field>
+            <table>Season__c.Races__r.Contestants__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Win__c</field>
             <table>Season__c.Races__r.Contestants__r</table>
         </columns>
         <masterLabel>Contestants</masterLabel>
