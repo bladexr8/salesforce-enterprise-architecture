@@ -1,4 +1,9 @@
-public inherited sharing class ContestantsSelector extends fflib_SObjectSelector {
+public inherited sharing class ContestantsSelector extends fflib_SObjectSelector implements IContestantsSelector {
+
+    public static IContestantsSelector newInstance()  { 
+		return (IContestantsSelector) Application.Selector.newInstance(Contestant__c.SObjectType); 
+	}
+
     public List<Schema.SObjectField> getSObjectFieldList() {
 
         return new List<Schema.SObjectField> {

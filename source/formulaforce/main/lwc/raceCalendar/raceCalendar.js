@@ -12,10 +12,14 @@ export default class RaceCalendar extends LightningElement {
   messageContext;
 
   handleSelect(event) {
+    console.log('***Race Selected...');
     // Determine selected Race details
     const raceId = event.detail;
-    const selectedRace = this.calendar.data.find(race => race.Id === race.Id);
+    const selectedRace = this.calendar.data.find(race => race.Id === raceId);
     const raceName = selectedRace.Name;
+    console.log(raceId);
+    console.log(selectedRace);
+    console.log(raceName);
     // Toggle selected race
     if (this.currentlySelectedRace != null) {
       this.currentlySelectedRace.selected = false;
@@ -24,6 +28,7 @@ export default class RaceCalendar extends LightningElement {
     this.currentlySelectedRace.selected = true;
     // Send refreshRaceResults component message 
     const payload = { raceId: raceId, raceName: raceName };
-    publish(this.messageContext, refreshRaceResults, payload);
+    console.log(payload)
+;    publish(this.messageContext, refreshRaceResults, payload);
   }
 }
