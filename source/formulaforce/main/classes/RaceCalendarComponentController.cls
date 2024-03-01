@@ -15,12 +15,12 @@ public with sharing class RaceCalendarComponentController {
             raceCalendarItem.Id = race.Id;
             raceCalendarItem.Name = race.Name;
             raceCalendarItem.Location = race.Location__c;
-            raceCalendarItem.RaceDate = raceDate.StartDate__c.format() + ' ' + race.EndDate__c.format();
+            raceCalendarItem.RaceDate = race.StartDate__c.format() + ' ' + race.EndDate__c.format();
             raceCalendarItem.selected = false;
             raceIdx++;
             if (raceIdx < numberOfCompletedRaces) {
                 raceCalendarItem.Completed = true;
-                completedRaces.add(raceCalendarItem)
+                completedRaces.add(raceCalendarItem);
             } else {
                 raceCalendarItem.Completed = false;
                 if (remainingRaces.size() > 0) {
