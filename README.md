@@ -22,3 +22,45 @@ Create a scratch org valid for 30 days
 ```
 sf org create scratch --definition-file config/project-scratch-def.json --alias F1AppScratchOrg --set-default --target-dev-hub myDevHub --duration-days 30
 ```
+
+Open Scratch Org
+```
+sf org open --target-org F1AppScratchOrg
+```
+
+Preview Remote Changes in Scratch Org
+```
+sf project retrieve preview --target-org F1AppScratchOrg
+```
+
+Retrieve Remote Changes from Scratch Org
+```
+sf project retrieve start --target-org F1AppScratchOrg
+```
+
+Preview Remote Deployment to Scratch Org
+```
+sf project deploy preview --target-org F1AppScratchOrg
+```
+
+Deploy to Remote Scratch Org
+```
+sf project deploy start --target-org F1AppScratchOrg
+```
+
+Assign Race Management Permission Set
+```
+sf org assign permset --name FormulaForceRaceManagement --target-org F1AppScratchOrg
+```
+
+Load 2023 Season Test Data (run from Project Home Folder)
+```
+sf apex run --file ./scripts/apex/loadSeasonData.apex
+```
+
+Load Race Overview LWC Test Data (run from Project Home Folder)
+```
+sf apex run --file ./scripts/apex/loadRaceOverviewData.apex
+```
+
+
