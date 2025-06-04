@@ -2,9 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Circuit_Reference__c</fullName>
     <caseSensitive>false</caseSensitive>
-    <description>Unique Identifier for Circuit to act as an External Key - DO NO ALTER</description>
-    <externalId>true</externalId>
-    <inlineHelpText>Unique Identifier for Circuit to act as an External Key - DO NO ALTER</inlineHelpText>
+    <description>Unique Identifier for Circuit</description>
+    <externalId>false</externalId>
     <label>Circuit Reference</label>
     <length>100</length>
     <required>false</required>

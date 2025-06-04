@@ -34,6 +34,10 @@
                 <behavior>Edit</behavior>
                 <field>Circuit_URL__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Data_Cloud_Id__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
