@@ -18,6 +18,11 @@ The `sfdx-project.json` file contains useful configuration information for your 
 - [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
 
 ## Project Commands
+Connect to an existing SF Org
+```
+sf org login web --set-default --alias AIDemoOrg
+```
+
 Create a scratch org valid for 30 days
 ```
 sf org create scratch --definition-file config/project-scratch-def.json --alias F1AppScratchOrg --set-default --target-dev-hub myDevHub --duration-days 30
