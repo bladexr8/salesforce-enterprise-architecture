@@ -48,6 +48,20 @@ Deploy to Remote Scratch Org
 sf project deploy start --target-org F1AppScratchOrg
 ```
 
+Validate against a Salesforce Org (run from project home directory, only deploy fflib libraries once to org)
+```
+sf project deploy validate --source-dir source/fflib-apex-mocks --target-org <org-alias>
+sf project deploy validate --source-dir source/fflib-apex-common --target-org <org-alias>
+sf project deploy validate --source-dir source/formulaforce --target-org <org-alias>
+```
+
+Deploy to a Salesforce Org (run from project home directory, only deploy fflib libraries once to org)
+```
+sf project deploy start --source-dir source/fflib-apex-mocks --target-org <org-alias>
+sf project deploy start --source-dir source/fflib-apex-common --target-org <org-alias>
+```
+
+
 Assign Race Management Permission Set
 ```
 sf org assign permset --name FormulaForceRaceManagement --target-org F1AppScratchOrg
