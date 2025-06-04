@@ -59,6 +59,7 @@ Deploy to a Salesforce Org (run from project home directory, only deploy fflib l
 ```
 sf project deploy start --source-dir source/fflib-apex-mocks --target-org <org-alias>
 sf project deploy start --source-dir source/fflib-apex-common --target-org <org-alias>
+sf project deploy start --source-dir source/formulaforce --target-org <org-alias>
 ```
 
 
