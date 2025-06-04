@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Data_Cloud_Id__c</fullName>
+    <caseSensitive>false</caseSensitive>
     <description>Unique Identifier to sync data with Data Cloud - DO NOT ALTER</description>
-    <externalId>false</externalId>
+    <externalId>true</externalId>
     <inlineHelpText>Unique Identifier to sync data with Data Cloud - DO NOT ALTER</inlineHelpText>
     <label>Data Cloud Id</label>
     <length>50</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
-    <unique>false</unique>
+    <unique>true</unique>
 </CustomField>

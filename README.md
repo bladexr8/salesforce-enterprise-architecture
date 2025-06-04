@@ -25,27 +25,27 @@ sf org create scratch --definition-file config/project-scratch-def.json --alias 
 
 Open Scratch Org
 ```
-sf org open --target-org F1AppScratchOrg
+sf org open --target-org <org-alias>
 ```
 
 Preview Remote Changes in Scratch Org
 ```
-sf project retrieve preview --target-org F1AppScratchOrg
+sf project retrieve preview --target-org <org-alias>
 ```
 
 Retrieve Remote Changes from Scratch Org
 ```
-sf project retrieve start --target-org F1AppScratchOrg
+sf project retrieve start --target-org <org-alias>
 ```
 
 Preview Remote Deployment to Scratch Org
 ```
-sf project deploy preview --target-org F1AppScratchOrg
+sf project deploy preview --target-org <org-alias>
 ```
 
 Deploy to Remote Scratch Org
 ```
-sf project deploy start --target-org F1AppScratchOrg
+sf project deploy start --target-org <org-alias>
 ```
 
 Validate against a Salesforce Org (run from project home directory, only deploy fflib libraries once to org)
