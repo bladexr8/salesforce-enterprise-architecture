@@ -43,7 +43,7 @@ public with sharing class F1DataCloudUpsertService {
     }
 
     // configuration class for upsert operation
-    public class UpsertOptions {
+    public class UpsertConfig {
         public String objectType {get;set;}
         public String externalIdField {get;set;}
         public Boolean allOrNone {get;set;}
@@ -117,6 +117,14 @@ public with sharing class F1DataCloudUpsertService {
         return upsertRecords(records, config);
     }
 
+    // upsert method for Circuit records using Data Cloud Id as the external ID
+    public static UpsertResult upsertCircuits(List<Circuit__c> circuits) {
+        UpsertConfig config = new UpsertConfig('Circuit__c', 'Data_Cloud_Id__c');
+        List<SObject> records = new List<SObject>();
+        records.addAll(circuits);
+        return upsertRecords(records, config);
+    }
+
     // batch insert for large datasets
     public static List<UpsertResult> upsertRecordsBatch(List<SObject> records, UpsertConfig config, Integer batchSize) {
         List<UpsertResult> results = new List<UpsertResult>();
@@ -144,6 +152,208 @@ public with sharing class F1DataCloudUpsertService {
         UpsertResult result = new UpsertResult();
 
         Database.UpsertResult[] upsertResults = Database.upsert(records, externalIdField, config.allOrNone);
+
+        // process results
+        for (Integer i=0; i < upsertResults.size(); i++) {
+            Database.UpsertResult upsertResult = upsertResults[i];
+            SObject record = records[i];
+            if (upsertResult.isSuccess()) {
+                if (upsertResult.isCreated()) {
+                    result.recordsCreated++;
+                    result.createdRecordIds.add(upsertResult.getId());
+                } else {
+                    result.recordsUpdated++;
+                    result.updatedRecordIds.add(upsertResult.getId());
+                }
+            } else {
+                result.recordsFailed++;
+                String recordIdentifier = getRecordIdentifier(record, config.externalIdField);
+                for (Database.Error error : upsertResult.getErrors()) {
+                    List<String> fieldNames = new List<String>();
+                    if (error.getFields() != null) {
+                        for (String field : error.getFields()) {
+                            fieldNames.add(field);
+                        }
+                    }
+                    result.errors.add(new UpsertError(
+                        recordIdentifier,
+                        error.getMessage(),
+                        error.getStatusCode().name(),
+                        fieldNames
+                    ));
+                }
+            }    
+        }
+        return result;
+    }
+
+    /**
+     * Perform validation-only operation
+     */
+    private static UpsertResult performValidationOnly(List<SObject> records, UpsertConfig config, Schema.SObjectField externalIdField) {
+        UpsertResult result = new UpsertResult();
+        
+        try {
+            // Create a savepoint for rollback
+            Savepoint sp = Database.setSavepoint();
+            
+            // Perform upsert and then rollback
+            Database.UpsertResult[] upsertResults = Database.upsert(records, externalIdField, false);
+            
+            // Rollback the transaction
+            Database.rollback(sp);
+            
+            // Process validation results
+            for (Integer i = 0; i < upsertResults.size(); i++) {
+                Database.UpsertResult upsertResult = upsertResults[i];
+                SObject record = records[i];
+                
+                if (upsertResult.isSuccess()) {
+                    // Would be created or updated
+                    if (upsertResult.isCreated()) {
+                        result.recordsCreated++;
+                    } else {
+                        result.recordsUpdated++;
+                    }
+                } else {
+                    result.recordsFailed++;
+                    String recordIdentifier = getRecordIdentifier(record, config.externalIdField);
+                    
+                    for (Database.Error error : upsertResult.getErrors()) {
+                        List<String> fieldNames = new List<String>();
+                        if (error.getFields() != null) {
+                            for (String field : error.getFields()) {
+                                fieldNames.add(field);
+                            }
+                        }
+                        
+                        result.errors.add(new UpsertError(
+                            recordIdentifier,
+                            error.getMessage(),
+                            error.getStatusCode().name(),
+                            fieldNames
+                        ));
+                    }
+                }
+            }
+            
+        } catch (Exception e) {
+            result.recordsFailed = records.size();
+            result.errors.add(new UpsertError('VALIDATION', e.getMessage(), e.getTypeName(), new List<String>()));
+        }
+        
+        return result;
+    }
+
+    /**
+     * Validate upsert inputs
+     */
+    private static void validateUpsertInputs(List<SObject> records, UpsertConfig config) {
+        if (records == null || records.isEmpty()) {
+            throw new UpsertException('Records list cannot be null or empty');
+        }
+        
+        if (String.isBlank(config.objectType)) {
+            throw new UpsertException('Object type must be specified');
+        }
+        
+        if (String.isBlank(config.externalIdField)) {
+            throw new UpsertException('External ID field must be specified');
+        }
+        
+        // Check if all records are of the same type
+        String expectedType = config.objectType;
+        for (SObject record : records) {
+            if (record.getSObjectType().getDescribe().getName() != expectedType) {
+                throw new UpsertException('All records must be of type: ' + expectedType);
+            }
+        }
+        
+        // Validate external ID field exists and has values
+        validateExternalIdValues(records, config.externalIdField);
+    }
+
+    /**
+     * Validate that external ID field exists and has values
+     */
+    private static void validateExternalIdValues(List<SObject> records, String externalIdField) {
+        for (SObject record : records) {
+            Object externalIdValue = record.get(externalIdField);
+            if (externalIdValue == null || String.valueOf(externalIdValue).trim() == '') {
+                throw new UpsertException('External ID field "' + externalIdField + '" cannot be null or empty');
+            }
+        }
+    }
+
+    /**
+     * Get SObjectField for external ID
+     */
+    private static Schema.SObjectField getExternalIdField(String objectType, String fieldName) {
+        Schema.SObjectType sObjectType = Schema.getGlobalDescribe().get(objectType);
+        if (sObjectType == null) {
+            throw new UpsertException('Invalid object type: ' + objectType);
+        }
+        
+        Map<String, Schema.SObjectField> fieldsMap = sObjectType.getDescribe().fields.getMap();
+        Schema.SObjectField field = fieldsMap.get(fieldName);
+        
+        if (field == null) {
+            throw new UpsertException('Field "' + fieldName + '" does not exist on object "' + objectType + '"');
+        }
+        
+        return field;
+    }
+
+    /**
+     * Get record identifier for error reporting
+     */
+    private static String getRecordIdentifier(SObject record, String externalIdField) {
+        Object externalIdValue = record.get(externalIdField);
+        if (externalIdValue != null) {
+            return String.valueOf(externalIdValue);
+        }
+        
+        if (record.Id != null) {
+            return record.Id;
+        }
+        
+        return 'Unknown';
+    }
+
+    /**
+     * Apply default values to records
+     */
+    private static void applyDefaultValues(List<SObject> records, Map<String, Object> defaultValues) {
+        for (SObject record : records) {
+            for (String fieldName : defaultValues.keySet()) {
+                Object currentValue = record.get(fieldName);
+                if (currentValue == null) {
+                    record.put(fieldName, defaultValues.get(fieldName));
+                }
+            }
+        }
+    }
+
+    /**
+     * Get upsert statistics for monitoring
+     */
+    @AuraEnabled(cacheable=true)
+    public static Map<String, Object> getUpsertStatistics(Integer days) {
+        Map<String, Object> stats = new Map<String, Object>();
+        
+        try {
+            // Query recent upsert operations from logs or custom objects
+            // This is a placeholder - implement based on your logging strategy
+            stats.put('totalOperations', 0);
+            stats.put('successfulOperations', 0);
+            stats.put('failedOperations', 0);
+            stats.put('recordsProcessed', 0);
+            
+        } catch (Exception e) {
+            stats.put('error', e.getMessage());
+        }
+        
+        return stats;
     }
 
 } // end F1DataCloudUpsertService
