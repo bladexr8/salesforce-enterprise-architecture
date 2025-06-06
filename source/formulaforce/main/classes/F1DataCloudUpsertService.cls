@@ -125,6 +125,30 @@ public with sharing class F1DataCloudUpsertService {
         return upsertRecords(records, config);
     }
 
+    // upsert method for Team (Constructor) records using Data Cloud Id as the external ID
+    public static UpsertResult upsertTeams(List<Team__c> teams) {
+        UpsertConfig config = new UpsertConfig('Team__c', 'Data_Cloud_Id__c');
+        List<SObject> records = new List<SObject>();
+        records.addAll(teams);
+        return upsertRecords(records, config);
+    }
+
+    // upsert method for Season records using Year as the external ID
+    public static UpsertResult upsertSeasons(List<Season__c> seasons) {
+        UpsertConfig config = new UpsertConfig('Season__c', 'Year__c');
+        List<SObject> records = new List<SObject>();
+        records.addAll(seasons);
+        return upsertRecords(records, config);
+    }
+
+    // upsert method for Driver records using Data Cloud Id as the external ID
+    public static UpsertResult upsertDrivers(List<Driver__c> drivers) {
+        UpsertConfig config = new UpsertConfig('Driver__c', 'Data_Cloud_Id__c');
+        List<SObject> records = new List<SObject>();
+        records.addAll(drivers);
+        return upsertRecords(records, config);
+    }
+
     // batch insert for large datasets
     public static List<UpsertResult> upsertRecordsBatch(List<SObject> records, UpsertConfig config, Integer batchSize) {
         List<UpsertResult> results = new List<UpsertResult>();
