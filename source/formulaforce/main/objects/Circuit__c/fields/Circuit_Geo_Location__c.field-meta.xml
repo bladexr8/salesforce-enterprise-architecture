@@ -3,7 +3,6 @@
     <fullName>Circuit_Geo_Location__c</fullName>
     <description>Geo co-ordinates of circuit location</description>
     <displayLocationInDecimal>true</displayLocationInDecimal>
-    <externalId>false</externalId>
     <label>Circuit Geo-Location</label>
     <required>false</required>
     <scale>10</scale>

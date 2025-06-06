@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>Circuit__c.Altitude__c</members>
+		<members>Circuit__c.Circuit_Geo_Location__c</members>
+		<members>Circuit__c.Circuit_Location__c</members>
+		<members>Circuit__c.Circuit_Reference__c</members>
+		<members>Circuit__c.Circuit_URL__c</members>
+		<members>Circuit__c.Country__c</members>
+		<members>Circuit__c.Data_Cloud_Id__c</members>
 		<members>Driver__c.Data_Cloud_Id__c</members>
+		<members>Driver__c.Date_of_Birth__c</members>
+		<members>Driver__c.Driver_Code__c</members>
+		<members>Driver__c.Driver_Nationality__c</members>
+		<members>Driver_c.Driver_Number__c</members>
+		<members>Driver__c.Driver_Reference__c</members>
+		<members>Driver__c.URL__c</members>
+		<members>Season__c.URL__c</members>
+		<members>Season__c.Year__c</members>
+		<members>Team__c.Data_Cloud_Id__c</members>
+		<members>Team__c.Team_Nationality__c</members>
+		<members>Team__c.Team_Reference__c</members>
+		<members>Team__c.URL__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
+		<members>Circuit__c</members>
 		<members>Driver__c</members>
 		<members>Season__c</members>
 		<members>Team__c</members>
