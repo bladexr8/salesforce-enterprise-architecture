@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Team_Boss__c</fullName>
+    <description>deprecated - DO NOT USE</description>
     <externalId>false</externalId>
-    <label>Team Boss</label>
+    <label>Team Boss (deprecated</label>
     <length>100</length>
     <required>false</required>
     <trackTrending>false</trackTrending>

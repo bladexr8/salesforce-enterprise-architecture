@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Active__c</fullName>
-    <defaultValue>true</defaultValue>
-    <description>deprecated - DO NOT USE</description>
-    <label>Active (deprecated)</label>
+    <fullName>Date_of_Birth__c</fullName>
+    <label>Date of Birth</label>
+    <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Date</type>
 </CustomField>

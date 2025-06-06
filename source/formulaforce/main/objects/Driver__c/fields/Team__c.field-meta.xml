@@ -2,8 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Team__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <externalId>false</externalId>
-    <label>Team</label>
+    <description>deprecated - DO NOT USE</description>
+    <label>Team (deprecated)</label>
     <referenceTo>Team__c</referenceTo>
     <relationshipLabel>Drivers</relationshipLabel>
     <relationshipName>Drivers</relationshipName>

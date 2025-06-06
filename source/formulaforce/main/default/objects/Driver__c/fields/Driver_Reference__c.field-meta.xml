@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Testing_Distance__c</fullName>
-    <description>deprecated - DO NOT USE</description>
+    <fullName>Driver_Reference__c</fullName>
     <externalId>false</externalId>
-    <label>Testing Distance (deprecated)</label>
-    <precision>6</precision>
+    <label>Driver Reference</label>
+    <length>50</length>
     <required>false</required>
-    <scale>0</scale>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Number</type>
+    <type>Text</type>
     <unique>false</unique>
 </CustomField>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -8,41 +9,41 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>DriverId__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Nationality__c</field>
+                <field>Driver_Reference__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FIA_Super_License__c</field>
+                <field>Date_of_Birth__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Active__c</field>
+                <field>Driver_Nationality__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>TwitterHandle__c</field>
+                <field>Driver_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Driver_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>URL__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Data_Cloud_Id__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ShortName__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Team__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -76,9 +77,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>DriverId__c</fields>
-    </miniLayout>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Season__c</fields>
@@ -110,7 +108,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hH4000000LPOa</masterLabel>
+        <masterLabel>00hHu00000ntToI</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
