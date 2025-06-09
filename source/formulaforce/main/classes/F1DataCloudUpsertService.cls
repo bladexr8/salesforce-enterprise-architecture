@@ -149,6 +149,14 @@ public with sharing class F1DataCloudUpsertService {
         return upsertRecords(records, config);
     }
 
+    // upsert method for Driver records using Data Cloud Id as the external ID
+    public static UpsertResult upsertRaces(List<Race__c> races) {
+        UpsertConfig config = new UpsertConfig('Race__c', 'Data_Cloud_Id__c');
+        List<SObject> records = new List<SObject>();
+        records.addAll(races);
+        return upsertRecords(records, config);
+    }
+
     // batch insert for large datasets
     public static List<UpsertResult> upsertRecordsBatch(List<SObject> records, UpsertConfig config, Integer batchSize) {
         List<UpsertResult> results = new List<UpsertResult>();

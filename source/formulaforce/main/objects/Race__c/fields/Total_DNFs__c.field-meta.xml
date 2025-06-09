@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Total_DNFs__c</fullName>
-    <externalId>false</externalId>
-    <label>Total DNFs</label>
+    <description>deprecated - DO NOT USE</description>
+    <label>Total DNFs (deprecated)</label>
     <summaryFilterItems>
         <field>Contestant__c.DNF__c</field>
         <operation>equals</operation>

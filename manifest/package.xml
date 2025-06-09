@@ -12,9 +12,33 @@
 		<members>Driver__c.Date_of_Birth__c</members>
 		<members>Driver__c.Driver_Code__c</members>
 		<members>Driver__c.Driver_Nationality__c</members>
-		<members>Driver_c.Driver_Number__c</members>
 		<members>Driver__c.Driver_Reference__c</members>
 		<members>Driver__c.URL__c</members>
+		<members>Driver_c.Driver_Number__c</members>
+		<members>Race__c.Data_Cloud_Id__c</members>
+		<members>Race__c.EndDate__c</members>
+		<members>Race__c.Free_Practice_1_Date__c</members>
+		<members>Race__c.Free_Practice_1_Time__c</members>
+		<members>Race__c.Free_Practice_2_Date__c</members>
+		<members>Race__c.Free_Practice_2_Time__c</members>
+		<members>Race__c.Free_Practice_3_Date__c</members>
+		<members>Race__c.Free_Practice_3_Time__c</members>
+		<members>Race__c.Location__c</members>
+		<members>Race__c.PolePositionLapTime__c</members>
+		<members>Race__c.Qualifying_Date__c</members>
+		<members>Race__c.Qualifying_Time__c</members>
+		<members>Race__c.Race_Date__c</members>
+		<members>Race__c.Race_Time__c</members>
+		<members>Race__c.Race_URL__c</members>
+		<members>Race__c.Round__c</members>
+		<members>Race__c.Season__c</members>
+		<members>Race__c.Sprint_Date__c</members>
+		<members>Race__c.Sprint_Time__c</members>
+		<members>Race__c.StartDate__c</members>
+		<members>Race__c.Status__c</members>
+		<members>Race__c.Total_DNFs__c</members>
+		<members>Race__c.Year__c</members>
+		<members>Race_c.FastestLapBy__c</members>
 		<members>Season__c.URL__c</members>
 		<members>Season__c.Year__c</members>
 		<members>Team__c.Data_Cloud_Id__c</members>
@@ -26,12 +50,14 @@
 	<types>
 		<members>Circuit__c</members>
 		<members>Driver__c</members>
+		<members>Race__c</members>
 		<members>Season__c</members>
 		<members>Team__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
 		<members>Driver__c-Driver Layout</members>
+		<members>Race__c-Race Layout</members>
 		<members>Season__c-Season Layout</members>
 		<members>Team__c-Team Layout</members>
 		<name>Layout</name>
@@ -41,5 +67,5 @@
 		<members>FormulaForceRaceManagement</members>
 		<name>PermissionSet</name>
 	</types>
-	<version>63.0</version>
+	<version>64.0</version>
 </Package>

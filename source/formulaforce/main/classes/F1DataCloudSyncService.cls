@@ -158,6 +158,80 @@ public with sharing class F1DataCloudSyncService {
             F1DataCloudUpsertService.UpsertResult result = F1DataCloudUpsertService.upsertDrivers(dataCloudDriversToUpsert);
             System.Debug('Created: ' + result.recordsCreated + ' Updated: ' + result.recordsUpdated + ' Failed: ' + result.recordsFailed);
         } else {
+            System.Debug('No Drivers returned from Data Cloud');
+        }            
+    }
+
+    // sync F1 Drivers
+    public static void syncRaces() {
+
+        List<F1_Race__dlm> dataCloudRaces = new List<F1_Race__dlm>();
+        List<Race__c> dataCloudRacesToUpsert = new List<Race__c>();
+
+        // Get data from Data Cloud 
+        dataCloudRaces = [
+            SELECT
+                circuitid__c,
+                date__c,
+                fp1_date__c,
+                fp1_time__c,
+                fp2_date__c,
+                fp2_time__c,
+                fp3_date__c,
+                fp3_time__c,
+                name__c,
+                quali_date__c,
+                quali_time__c,
+                raceid__c,
+                round__c,
+                sprint_date__c,
+                sprint_time__c,
+                time__c,
+                url__c,
+                year__c
+            FROM F1_Race__dlm
+        ];
+
+        // Build list of Driver objects to upsert
+        if (dataCloudRaces.size() > 0) {
+            for (F1_Race__dlm f1Race : dataCloudRaces) {
+                Race__c newRace = new Race__c(
+                    Data_Cloud_Id__c = Integer.valueOf(f1Race.raceid__c).toString(),
+                    Free_Practice_1_Date__c = f1Race.fp1_date__c,
+                    Free_Practice_1_Time__c = f1Race.fp1_time__c,
+                    Free_Practice_2_Date__c = f1Race.fp2_date__c,
+                    Free_Practice_2_Time__c = f1Race.fp2_time__c,
+                    Free_Practice_3_Date__c = f1Race.fp3_date__c,
+                    Free_Practice_3_Time__c = f1Race.fp3_time__c,
+                    Qualifying_Date__c = f1Race.quali_date__c,
+                    Qualifying_Time__c = f1Race.quali_time__c,
+                    Race_Date__c = f1Race.date__c,
+                    Name = f1Race.name__c,
+                    Race_Time__c = f1Race.time__c,
+                    Race_URL__c = f1Race.url__c,
+                    Round__c = f1Race.round__c,
+                    Sprint_Date__c = f1Race.sprint_date__c,
+                    Sprint_Time__c = f1Race.sprint_time__c
+                );
+                // Link to existing Circuit using External ID relationship
+                if(!String.isBlank(Integer.valueOf(f1Race.raceId__c).toString())) {
+                    Circuit__c circuit = new Circuit__c();
+                    circuit.Data_Cloud_Id__c = Integer.valueOf(f1Race.circuitid__c).toString();
+                    newRace.Circuit__r = circuit; // This creates the relationship link
+                }
+                // Link to existing Season using External ID relationship
+                if(!String.isBlank(Integer.valueOf(f1Race.year__c).toString())) {
+                    Season__c season = new Season__c();
+                    season.year__c = Integer.valueOf(f1Race.year__c).toString();
+                    newRace.Season__r = season; // This creates the relationship link
+                }
+                dataCloudRacesToUpsert.add(newRace);
+            }
+
+            // perform the upsert
+            F1DataCloudUpsertService.UpsertResult result = F1DataCloudUpsertService.upsertRaces(dataCloudRacesToUpsert);
+            System.Debug('Created: ' + result.recordsCreated + ' Updated: ' + result.recordsUpdated + ' Failed: ' + result.recordsFailed);
+        } else {
             System.Debug('No Constructors returned from Data Cloud');
         }            
     }

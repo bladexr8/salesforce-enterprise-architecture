@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PolePositionLapTime__c</fullName>
-    <externalId>false</externalId>
-    <label>Pole Position Lap Time</label>
+    <label>Pole Position Lap Time (deprecated)</label>
     <summarizedField>Contestant__c.Qualification1LapTime__c</summarizedField>
     <summaryForeignKey>Contestant__c.Race__c</summaryForeignKey>
     <summaryOperation>min</summaryOperation>
