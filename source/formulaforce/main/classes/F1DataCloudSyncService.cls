@@ -240,6 +240,43 @@ public with sharing class F1DataCloudSyncService {
     public static void syncContestants() {
 
         List<F1_Race_Result__dlm> dataCloudRaceResults = new List<F1_Race_Result__dlm>();
+
+        // Get data from Data Cloud 
+        for ( F1_Race_Result__dlm f1Result : [
+            SELECT
+                constructorid__c,
+                driverid__c,
+                fastestlap__c,
+                fastestlapspeed__c,
+                fastestlaptime__c,
+                finishing_status__c,
+                grid__c,
+                laps__c,
+                milliseconds__c,
+                number__c,
+                points__c,
+                position__c,
+                positionorder__c,
+                positiontext__c,
+                raceid__c,
+                race_round__c,
+                race_year__c,
+                resultid__c
+            FROM F1_Race_Result__dlm
+        ]) {
+            dataCloudRaceResults.add(f1Result);
+        }
+
+        // set up the Upsert Config
+        F1DataCloudUpsertService.UpsertConfig batchClassConfig = new F1DataCloudUpsertService.UpsertConfig('Contestant__c', 'Data_Cloud_Id__c');
+
+        // execute the batch
+        F1DataCloudSyncContestantsBatch batchJob = new F1DataCloudSyncContestantsBatch(dataCloudRaceResults, batchClassConfig);
+        Id batchJobId = Database.executeBatch(batchJob, 200);
+        System.Debug('Contestants Sync Batch Added to queue: ' + batchJobId);
+    
+
+       /* List<F1_Race_Result__dlm> dataCloudRaceResults = new List<F1_Race_Result__dlm>();
         List<Contestant__c> dataCloudContestantsToUpsert = new List<Contestant__c>();
 
         // Get data from Data Cloud 
@@ -321,6 +358,6 @@ public with sharing class F1DataCloudSyncService {
             System.Debug('Created: ' + result.recordsCreated + ' Updated: ' + result.recordsUpdated + ' Failed: ' + result.recordsFailed);
         } else {
             System.Debug('No Race Results returned from Data Cloud');
-        }            
+        }   */         
     }
 }
