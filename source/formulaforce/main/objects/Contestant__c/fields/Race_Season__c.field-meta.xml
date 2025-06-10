@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Team__c</fullName>
+    <fullName>Race_Season__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <label>Team</label>
-    <referenceTo>Team__c</referenceTo>
+    <label>Race Season</label>
+    <referenceTo>Season__c</referenceTo>
     <relationshipLabel>Contestants</relationshipLabel>
     <relationshipName>Contestants</relationshipName>
     <required>false</required>

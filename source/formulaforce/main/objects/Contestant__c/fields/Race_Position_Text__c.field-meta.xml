@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Race_Time__c</fullName>
+    <fullName>Race_Position_Text__c</fullName>
     <externalId>false</externalId>
-    <label>Race Time</label>
-    <length>25</length>
+    <label>Race Position (Text)</label>
+    <length>20</length>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

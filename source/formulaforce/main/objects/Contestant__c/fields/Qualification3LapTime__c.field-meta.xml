@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Qualification3LapTime__c</fullName>
+    <description>deprecated - DO NOT USE</description>
     <externalId>false</externalId>
-    <label>Qualification 3 Lap Time</label>
+    <label>Qualification 3 Lap Time (deprecated)</label>
     <precision>9</precision>
     <required>false</required>
     <scale>3</scale>

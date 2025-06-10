@@ -2,10 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>RaceTime__c</fullName>
     <externalId>false</externalId>
-    <label>Race Time</label>
-    <precision>9</precision>
+    <label>Race Time (ms)</label>
+    <precision>12</precision>
     <required>false</required>
-    <scale>3</scale>
+    <scale>2</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>

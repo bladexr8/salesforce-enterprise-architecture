@@ -149,11 +149,19 @@ public with sharing class F1DataCloudUpsertService {
         return upsertRecords(records, config);
     }
 
-    // upsert method for Driver records using Data Cloud Id as the external ID
+    // upsert method for Race records
     public static UpsertResult upsertRaces(List<Race__c> races) {
         UpsertConfig config = new UpsertConfig('Race__c', 'Data_Cloud_Id__c');
         List<SObject> records = new List<SObject>();
         records.addAll(races);
+        return upsertRecords(records, config);
+    }
+
+    // upsert method for Race Result (Contestant) records
+    public static UpsertResult upsertContestants(List<Contestant__c> contestants) {
+        UpsertConfig config = new UpsertConfig('Contestant__c', 'Data_Cloud_Id__c');
+        List<SObject> records = new List<SObject>();
+        records.addAll(contestants);
         return upsertRecords(records, config);
     }
 

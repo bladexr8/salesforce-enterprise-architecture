@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -9,10 +10,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Name</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Season__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -31,10 +28,6 @@
                 <field>Car_Number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>DriverRace__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ChampionshipPoints__c</field>
             </layoutItems>
@@ -44,27 +37,43 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DNF__c</field>
+                <field>Data_Cloud_Id__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Qualification1LapTime__c</field>
+                <field>Fastest_Lap__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Qualification2LapTime__c</field>
+                <field>Fastest_Lap_Speed__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Qualification3LapTime__c</field>
+                <field>Fastest_Lap_Time__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>RetirementReason__c</field>
+                <field>Finishing_Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Win__c</field>
+                <behavior>Edit</behavior>
+                <field>Driver_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Race_Position_Text__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Race_Position_Order__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Race_Round__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Race_Season__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -137,7 +146,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hH4000000LPPX</masterLabel>
+        <masterLabel>00hHu00000ntToH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -2,8 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DNF__c</fullName>
     <defaultValue>false</defaultValue>
-    <externalId>false</externalId>
-    <label>DNF</label>
+    <description>deprecated - DO NOT USE</description>
+    <label>DNF (deprecated)</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
