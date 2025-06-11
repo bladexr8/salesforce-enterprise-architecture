@@ -344,4 +344,51 @@ public with sharing class F1DataCloudSyncService {
             System.Debug(LoggingLevel.DEBUG, 'Team Standings Sync Batch Added to queue: ' + batchJobId);
         }       
     }
+
+    // sync F1 Constructor Results (Team Results)
+    public static void syncTeamResults() {
+
+        List<F1_Constructor_Result__dlm> dataCloudConstResults = new List<F1_Constructor_Result__dlm>();
+        List<List<F1_Constructor_Result__dlm>> dataCloudBatchesToUpsert = new List<List<F1_Constructor_Result__dlm>>();
+        Integer batchSize = 5000;
+
+        // Get data from Data Cloud 
+        for ( F1_Constructor_Result__dlm f1ConstResult : [
+            SELECT
+                constructorid__c,
+                constructorresultsid__c,
+                points__c,
+                raceid__c,
+                status__c
+            FROM F1_Constructor_Result__dlm
+        ]) {
+            dataCloudConstResults.add(f1ConstResult);
+
+            // increment a batch
+            if (dataCloudConstResults.size() > batchSize) {
+                dataCloudBatchesToUpsert.add(dataCloudConstResults);
+                dataCloudConstResults = new List<F1_Constructor_Result__dlm>();
+            }
+        }
+
+        // last batch (if required)
+        if (dataCloudConstResults.size() > 0) {
+            dataCloudBatchesToUpsert.add(dataCloudConstResults);
+            // preserve memory
+            dataCloudConstResults = new List<F1_Constructor_Result__dlm>();
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Retrieved and Generated ' + dataCloudBatchesToUpsert.size() + ' Constructor Result Batches from Data Cloud');
+
+        // set up the Upsert Config
+        F1DataCloudUpsertService.UpsertConfig batchClassConfig = new F1DataCloudUpsertService.UpsertConfig('Team_Result__c', 'Data_Cloud_Id__c');
+
+        // Submit the Batches
+        for (List<F1_Constructor_Result__dlm> batch : dataCloudBatchesToUpsert) {
+            System.Debug(LoggingLevel.DEBUG, 'Batch Count: ' + batch.size() + ' Submitting...');
+            F1DataCloudSyncTeamResultsBatch batchJob = new F1DataCloudSyncTeamResultsBatch(batch, batchClassConfig);
+            Id batchJobId = Database.executeBatch(batchJob, 200);
+            System.Debug(LoggingLevel.DEBUG, 'Team Results Sync Batch Added to queue: ' + batchJobId);
+        }       
+    }
 }

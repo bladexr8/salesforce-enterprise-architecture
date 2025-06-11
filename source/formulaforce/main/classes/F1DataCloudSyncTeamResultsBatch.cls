@@ -1,58 +1,53 @@
-/**
- * Batch class for processing large upsert operations
- */
-public class F1DataCloudSyncTeamStandingsBatch implements Database.Batchable<SObject>, Database.Stateful {
-    
+public class F1DataCloudSyncTeamResultsBatch implements Database.Batchable<SObject>, Database.Stateful {
+
     private List<SObject> recordsToProcess;
     private F1DataCloudUpsertService.UpsertConfig config;
     private List<F1DataCloudUpsertService.UpsertResult> batchResults;
-    
-    public F1DataCloudSyncTeamStandingsBatch(List<SObject> records, F1DataCloudUpsertService.UpsertConfig upsertConfig) {
+
+    public F1DataCloudSyncTeamResultsBatch(List<SObject> records, F1DataCloudUpsertService.UpsertConfig upsertConfig) {
         this.recordsToProcess = records;
         this.config = upsertConfig;
         this.batchResults = new List<F1DataCloudUpsertService.UpsertResult>();
     }
-    
+
     public Iterable<SObject> start(Database.BatchableContext BC) {
         return recordsToProcess;
     }
     
     public void execute(Database.BatchableContext BC, List<SObject> batch) {
 
-        List<F1_Constructor_Standing__dlm> dataCloudConstructorStandings = new List<F1_Constructor_Standing__dlm>();
-        List<Team_Standing__c> dataCloudTeamStandingsToUpsert = new List<Team_Standing__c>();
+        List<F1_Constructor_Result__dlm> dataCloudConstructorResults = new List<F1_Constructor_Result__dlm>();
+        List<Team_Result__c> dataCloudTeamResultsToUpsert = new List<Team_Result__c>();
 
-        dataCloudConstructorStandings.addAll((List<F1_Constructor_Standing__dlm>)batch);
+        dataCloudConstructorResults.addAll((List<F1_Constructor_Result__dlm>)batch);
         
         // convert to Team Standing records
-        for (F1_Constructor_Standing__dlm f1ConstStanding : dataCloudConstructorStandings) {
-                Team_Standing__c newStanding = new Team_Standing__c(
-                    Data_Cloud_Id__c = Integer.valueOf(f1ConstStanding.constructorstandingsid__c).toString(),
-                    Championship_Points__c = f1ConstStanding.points__c,
-                    Position__c = f1ConstStanding.position__c,
-                    Position_Text__c = f1ConstStanding.positiontext__c,
-                    Wins__c = f1ConstStanding.wins__c
+        for (F1_Constructor_Result__dlm f1ConstResult : dataCloudConstructorResults) {
+                Team_Result__c newResult = new Team_Result__c(
+                    Data_Cloud_Id__c = Integer.valueOf(f1ConstResult.constructorresultsid__c).toString(),
+                    Championship_Points__c = f1ConstResult.points__c,
+                    Status__c = f1ConstResult.status__c
                 );
                 // Race__c
                 // Team__c
                 // Link to existing Race using External ID relationship
-                if(!String.isBlank(Integer.valueOf(f1ConstStanding.raceid__c).toString())) {
+                if(!String.isBlank(Integer.valueOf(f1ConstResult.raceid__c).toString())) {
                     Race__c race = new Race__c();
-                    race.Data_Cloud_Id__c = Integer.valueOf(f1ConstStanding.raceid__c).toString();
-                    newStanding.Race__r = race; // This creates the relationship link
+                    race.Data_Cloud_Id__c = Integer.valueOf(f1ConstResult.raceid__c).toString();
+                    newResult.Race__r = race; // This creates the relationship link
                 }
                 // Link to existing Team using External ID relationship
-                if(!String.isBlank(Integer.valueOf(f1ConstStanding.constructorid__c).toString())) {
+                if(!String.isBlank(Integer.valueOf(f1ConstResult.constructorid__c).toString())) {
                     Team__c team = new Team__c();
-                    team.Data_Cloud_Id__c = Integer.valueOf(f1ConstStanding.constructorid__c).toString();
-                    newStanding.Team__r = team; // This creates the relationship link
+                    team.Data_Cloud_Id__c = Integer.valueOf(f1ConstResult.constructorid__c).toString();
+                    newResult.Team__r = team; // This creates the relationship link
                 }
-                dataCloudTeamStandingsToUpsert.add(newStanding);
+                dataCloudTeamResultsToUpsert.add(newResult);
         }
 
         // prepare and upsert contestant records
         List<SObject> records = new List<SObject>();
-        records.addAll(dataCloudTeamStandingsToUpsert);
+        records.addAll(dataCloudTeamResultsToUpsert);
 
         F1DataCloudUpsertService.UpsertResult result = F1DataCloudUpsertService.upsertRecords(records, config);
         batchResults.add(result);
@@ -80,7 +75,7 @@ public class F1DataCloudSyncTeamStandingsBatch implements Database.Batchable<SOb
             }
         }
         
-        System.debug('Team Standings Batch upsert completed - Created: ' + totalCreated + 
+        System.debug('Team Result Batch upsert completed - Created: ' + totalCreated + 
                     ', Updated: ' + totalUpdated + ', Failed: ' + totalFailed);
         
         // Send notification email if needed
@@ -97,5 +92,4 @@ public class F1DataCloudSyncTeamStandingsBatch implements Database.Batchable<SOb
         
         Messaging.sendEmail(new Messaging.SingleEmailMessage[]{email});
     }
-
 }
