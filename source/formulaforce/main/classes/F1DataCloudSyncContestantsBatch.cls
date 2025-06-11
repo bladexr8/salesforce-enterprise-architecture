@@ -99,6 +99,13 @@ public class F1DataCloudSyncContestantsBatch implements Database.Batchable<SObje
             totalCreated += result.recordsCreated;
             totalUpdated += result.recordsUpdated;
             totalFailed += result.recordsFailed;
+
+            if (result.recordsFailed > 0) {
+                for (F1DataCloudUpsertService.UpsertError error : result.errors) {
+                    System.debug('Error: ' + error.errorCode + ' ' + error.errorMessage);
+                    System.debug('Error record: ' + error.recordIdentifier);
+                }
+            }
         }
         
         System.debug('Contestant Batch upsert completed - Created: ' + totalCreated + 
@@ -106,7 +113,7 @@ public class F1DataCloudSyncContestantsBatch implements Database.Batchable<SObje
         
         // Send notification email if needed
         if (totalFailed > 0) {
-            sendErrorNotification(totalFailed);
+            sendErrorNotification(totalFailed);    
         }
     }
     

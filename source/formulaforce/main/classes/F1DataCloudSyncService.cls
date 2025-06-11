@@ -240,6 +240,8 @@ public with sharing class F1DataCloudSyncService {
     public static void syncContestants() {
 
         List<F1_Race_Result__dlm> dataCloudRaceResults = new List<F1_Race_Result__dlm>();
+        List<List<F1_Race_Result__dlm>> dataCloudBatchesToUpsert = new List<List<F1_Race_Result__dlm>>();
+        Integer batchSize = 5000;
 
         // Get data from Data Cloud 
         for ( F1_Race_Result__dlm f1Result : [
@@ -265,15 +267,41 @@ public with sharing class F1DataCloudSyncService {
             FROM F1_Race_Result__dlm
         ]) {
             dataCloudRaceResults.add(f1Result);
+
+            // increment a batch
+            if (dataCloudRaceResults.size() > batchSize) {
+                dataCloudBatchesToUpsert.add(dataCloudRaceResults);
+                dataCloudRaceResults = new List<F1_Race_Result__dlm>();
+            }
+
         }
+
+        // last batch (if required)
+        if (dataCloudRaceResults.size() > 0) {
+            dataCloudBatchesToUpsert.add(dataCloudRaceResults);
+            // preserve memory
+            dataCloudRaceResults = new List<F1_Race_Result__dlm>();
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Retrieved and Generated ' + dataCloudBatchesToUpsert.size() + ' Race Result Batches from Data Cloud');
 
         // set up the Upsert Config
         F1DataCloudUpsertService.UpsertConfig batchClassConfig = new F1DataCloudUpsertService.UpsertConfig('Contestant__c', 'Data_Cloud_Id__c');
 
+        // Submit the Batches
+        for (List<F1_Race_Result__dlm> batch : dataCloudBatchesToUpsert) {
+            System.Debug(LoggingLevel.DEBUG, 'Batch Count: ' + batch.size() + ' Submitting...');
+            F1DataCloudSyncContestantsBatch batchJob = new F1DataCloudSyncContestantsBatch(batch, batchClassConfig);
+            Id batchJobId = Database.executeBatch(batchJob, 200);
+            System.Debug(LoggingLevel.DEBUG, 'Contestants Sync Batch Added to queue: ' + batchJobId);
+        }
+
+        
+
         // execute the batch
-        F1DataCloudSyncContestantsBatch batchJob = new F1DataCloudSyncContestantsBatch(dataCloudRaceResults, batchClassConfig);
-        Id batchJobId = Database.executeBatch(batchJob, 200);
-        System.Debug('Contestants Sync Batch Added to queue: ' + batchJobId);
+        //F1DataCloudSyncContestantsBatch batchJob = new F1DataCloudSyncContestantsBatch(dataCloudRaceResults, batchClassConfig);
+        //Id batchJobId = Database.executeBatch(batchJob, 200);
+        //System.Debug('Contestants Sync Batch Added to queue: ' + batchJobId);
     
 
        /* List<F1_Race_Result__dlm> dataCloudRaceResults = new List<F1_Race_Result__dlm>();
