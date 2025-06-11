@@ -85,6 +85,7 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
+		<members>Circuit__c-Circuit Layout<members>
 		<members>Contestant__c-Contestant Layout</members>
 		<members>Driver__c-Driver Layout</members>
 		<members>Race__c-Race Layout</members>
