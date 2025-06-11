@@ -3,7 +3,7 @@
     <fullName>Team__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Team</label>
-    <referenceTo>Team</referenceTo>
+    <referenceTo>Team__c</referenceTo>
     <relationshipLabel>Team Standings</relationshipLabel>
     <relationshipName>Team_Standings</relationshipName>
     <required>false</required>

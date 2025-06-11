@@ -70,8 +70,8 @@
         <fields>Race__c</fields>
         <fields>Driver__c</fields>
         <fields>Race_Position_Order__c</fields>
-        <fields>Finishing_Status__c</fields>
         <fields>ChampionshipPoints__c</fields>
+        <fields>Finishing_Status__c</fields>
         <relatedList>Contestant__c.Team__c</relatedList>
         <sortField>Race_Season__c</sortField>
         <sortOrder>Desc</sortOrder>

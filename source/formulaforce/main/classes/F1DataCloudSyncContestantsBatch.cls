@@ -15,12 +15,6 @@ public class F1DataCloudSyncContestantsBatch implements Database.Batchable<SObje
     }
     
     public Iterable<SObject> start(Database.BatchableContext BC) {
-        /*string query = 'SELECT ' +
-                        'constructorid__c, driverid__c, fastestlap__c, fastestlapspeed__c, fastestlaptime__c, ' +
-                        'finishing_status__c, grid__c, laps__c, milliseconds__c, number__c, points__c,' +
-                        'position__c, positionorder__c, positiontext__c, raceid__c, race_round__c, race_year__c, ' +
-                        'resultid__c FROM F1_Race_Result__dlm';
-        return Database.getQueryLocator(query);*/
         return recordsToProcess;
     }
     

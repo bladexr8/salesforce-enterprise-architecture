@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -115,8 +116,8 @@
         <fields>NAME</fields>
         <fields>Driver__c</fields>
         <fields>Race_Position_Order__c</fields>
-        <fields>Finishing_Status__c</fields>
         <fields>ChampionshipPoints__c</fields>
+        <fields>Finishing_Status__c</fields>
         <fields>Team__c</fields>
         <relatedList>Contestant__c.Race__c</relatedList>
         <sortField>Race_Position_Order__c</sortField>
@@ -124,7 +125,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Team__c</fields>
+        <fields>Position__c</fields>
+        <fields>Championship_Points__c</fields>
+        <fields>Wins__c</fields>
         <relatedList>Team_Standing__c.Race__c</relatedList>
+        <sortField>Position__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
