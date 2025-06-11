@@ -8,30 +8,30 @@
 		<members>Circuit__c.Circuit_URL__c</members>
 		<members>Circuit__c.Country__c</members>
 		<members>Circuit__c.Data_Cloud_Id__c</members>
-		<members>Contestant__c.Car__c</members>
 		<members>Contestant__c.Car_Number__c</members>
+		<members>Contestant__c.Car__c</members>
 		<members>Contestant__c.ChampionshipPoints__c</members>
-		<members>Contestant__c.Data_Cloud_Id__c</members>
 		<members>Contestant__c.DNF__c</members>
-		<members>Contestant__c.Driver__c</members>
+		<members>Contestant__c.Data_Cloud_Id__c</members>
 		<members>Contestant__c.DriverRace__c</members>
 		<members>Contestant__c.Driver_Number__c</members>
-		<members>Contestant__c.Fastest_Lap__c</members>
+		<members>Contestant__c.Driver__c</members>
 		<members>Contestant__c.Fastest_Lap_Speed__c</members>
 		<members>Contestant__c.Fastest_Lap_Time__c</members>
+		<members>Contestant__c.Fastest_Lap__c</members>
 		<members>Contestant__c.Finishing_Status__c</members>
 		<members>Contestant__c.GridPosition__c</members>
 		<members>Contestant__c.Laps_Completed__c</members>
 		<members>Contestant__c.Qualification1LapTime__c</members>
 		<members>Contestant__c.Qualification2LapTime__c</members>
 		<members>Contestant__c.Qualification3LapTime__c</members>
-		<members>Contestant__c.Race__c</members>
 		<members>Contestant__c.RacePosition__c</members>
-		<members>Contestant__c.Race_Position_Text__c</members>
+		<members>Contestant__c.RaceTime__c</members>
 		<members>Contestant__c.Race_Position_Order__c</members>
+		<members>Contestant__c.Race_Position_Text__c</members>
 		<members>Contestant__c.Race_Round__c</members>
 		<members>Contestant__c.Race_Season__c</members>
-		<members>Contestant__c.RaceTime__c</members>
+		<members>Contestant__c.Race__c</members>
 		<members>Contestant__c.RetirementReason__c</members>
 		<members>Contestant__c.Season__c</members>
 		<members>Contestant__c.Team__c</members>
@@ -69,17 +69,17 @@
 		<members>Race_c.FastestLapBy__c</members>
 		<members>Season__c.URL__c</members>
 		<members>Season__c.Year__c</members>
+		<members>Team_Standing__c.Championship_Points__c</members>
+		<members>Team_Standing__c.Data_Cloud_Id__c</members>
+		<members>Team_Standing__c.Position_Text__c</members>
+		<members>Team_Standing__c.Position__c</members>
+		<members>Team_Standing__c.Race__c</members>
+		<members>Team_Standing__c.Team__c</members>
+		<members>Team_Standing__c.Wins__c</members>
 		<members>Team__c.Data_Cloud_Id__c</members>
 		<members>Team__c.Team_Nationality__c</members>
 		<members>Team__c.Team_Reference__c</members>
 		<members>Team__c.URL__c</members>
-		<members>Team_Standing__c.Championship_Points__c</members>
-		<members>Team_Standing__c.Data_Cloud_Id__c</members>
-		<members>Team_Standing__c.Position__c</members>
-		<members>Team_Standing__c.Position_Text__c</members>
-		<members>Team_Standing__c.Race__c</members>
-		<members>Team_Standing__c.Team__c</members>
-		<members>Team_Standing__c.Wins__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -88,16 +88,17 @@
 		<members>Driver__c</members>
 		<members>Race__c</members>
 		<members>Season__c</members>
-		<members>Team__c</members>
 		<members>Team_Standing__c</members>
+		<members>Team__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Circuit__c-Circuit Layout<members>
+		<members>Circuit__c-Circuit Layout</members>
 		<members>Contestant__c-Contestant Layout</members>
 		<members>Driver__c-Driver Layout</members>
 		<members>Race__c-Race Layout</members>
 		<members>Season__c-Season Layout</members>
+		<members>Team_Standing__c-Team Standing Layout</members>
 		<members>Team__c-Team Layout</members>
 		<name>Layout</name>
 	</types>
