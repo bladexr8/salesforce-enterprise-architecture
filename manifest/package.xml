@@ -43,6 +43,13 @@
 		<members>Driver__c.Driver_Reference__c</members>
 		<members>Driver__c.URL__c</members>
 		<members>Driver_c.Driver_Number__c</members>
+		<members>Driver_Standing__c.Championship_Points__c</members>
+		<members>Driver_Standing__c.Data_Cloud_Id__c</members>
+		<members>Driver_Standing__c.Driver__c</members>
+		<members>Driver_Standing__c.Position__c</members>
+		<members>Driver_Standing__c.Position_Text__c</members>
+		<members>Driver_Standing__c.Race__c</members>
+		<members>Driver_Standing__c.Wins__c</members>
 		<members>Race__c.Data_Cloud_Id__c</members>
 		<members>Race__c.EndDate__c</members>
 		<members>Race__c.Free_Practice_1_Date__c</members>
@@ -90,6 +97,7 @@
 	<types>
 		<members>Circuit__c</members>
 		<members>Contestant__c</members>
+		<members>Driver_Standing__c</members>
 		<members>Driver__c</members>
 		<members>Race__c</members>
 		<members>Season__c</members>
@@ -101,6 +109,7 @@
 	<types>
 		<members>Circuit__c-Circuit Layout</members>
 		<members>Contestant__c-Contestant Layout</members>
+		<members>Driver_Standing__c-Driver Standing Layout</members>
 		<members>Driver__c-Driver Layout</members>
 		<members>Race__c-Race Layout</members>
 		<members>Season__c-Season Layout</members>
