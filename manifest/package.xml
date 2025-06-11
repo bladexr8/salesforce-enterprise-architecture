@@ -73,6 +73,13 @@
 		<members>Team__c.Team_Nationality__c</members>
 		<members>Team__c.Team_Reference__c</members>
 		<members>Team__c.URL__c</members>
+		<members>Team_Standing__c.Championship_Points__c</members>
+		<members>Team_Standing__c.Data_Cloud_Id__c</members>
+		<members>Team_Standing__c.Position__c</members>
+		<members>Team_Standing__c.Position_Text__c</members>
+		<members>Team_Standing__c.Race__c</members>
+		<members>Team_Standing__c.Team__c</members>
+		<members>Team_Standing__c.Wins__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
@@ -82,6 +89,7 @@
 		<members>Race__c</members>
 		<members>Season__c</members>
 		<members>Team__c</members>
+		<members>Team_Standing__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
