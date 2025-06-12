@@ -441,4 +441,55 @@ public with sharing class F1DataCloudSyncService {
             System.Debug(LoggingLevel.DEBUG, 'Driver Standings Sync Batch Added to queue: ' + batchJobId);
         }       
     }
+
+
+    // sync Pit Stops
+    public static void syncPitStops() {
+
+        List<F1_Pit_Stop__dlm> dataCloudPitStops = new List<F1_Pit_Stop__dlm>();
+        List<List<F1_Pit_Stop__dlm>> dataCloudBatchesToUpsert = new List<List<F1_Pit_Stop__dlm>>();
+        Integer batchSize = 5000;
+
+        // Get data from Data Cloud 
+        for ( F1_Pit_Stop__dlm f1PitStop : [
+            SELECT
+                driverid__c,
+                duration__c,
+                external_id__c,
+                lap__c,
+                milliseconds__c,
+                raceid__c,
+                STOP__c,
+                time__c
+            FROM F1_Pit_Stop__dlm
+        ]) {
+            dataCloudPitStops.add(f1PitStop);
+
+            // increment a batch
+            if (dataCloudPitStops.size() > batchSize) {
+                dataCloudBatchesToUpsert.add(dataCloudPitStops);
+                dataCloudPitStops = new List<F1_Pit_Stop__dlm>();
+            }
+        }
+
+        // last batch (if required)
+        if (dataCloudPitStops.size() > 0) {
+            dataCloudBatchesToUpsert.add(dataCloudPitStops);
+            // preserve memory
+            dataCloudPitStops = new List<F1_Pit_Stop__dlm>();
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Retrieved and Generated ' + dataCloudBatchesToUpsert.size() + ' Pit Stop Batches from Data Cloud');
+
+        // set up the Upsert Config
+        F1DataCloudUpsertService.UpsertConfig batchClassConfig = new F1DataCloudUpsertService.UpsertConfig('Pit_Stop__c', 'Data_Cloud_Id__c');
+
+        // Submit the Batches
+        for (List<F1_Pit_Stop__dlm> batch : dataCloudBatchesToUpsert) {
+            System.Debug(LoggingLevel.DEBUG, 'Batch Count: ' + batch.size() + ' Submitting...');
+            F1DataCloudSyncPitStopsBatch batchJob = new F1DataCloudSyncPitStopsBatch(batch, batchClassConfig);
+            Id batchJobId = Database.executeBatch(batchJob, 500);
+            System.Debug(LoggingLevel.DEBUG, 'Pit Stop Sync Batch Added to queue: ' + batchJobId);
+        }       
+    }
 }
