@@ -391,4 +391,54 @@ public with sharing class F1DataCloudSyncService {
             System.Debug(LoggingLevel.DEBUG, 'Team Results Sync Batch Added to queue: ' + batchJobId);
         }       
     }
+
+
+    // sync Driver Standings
+    public static void syncDriverStandings() {
+
+        List<F1_Driver_Standing__dlm> dataCloudDriverStandings = new List<F1_Driver_Standing__dlm>();
+        List<List<F1_Driver_Standing__dlm>> dataCloudBatchesToUpsert = new List<List<F1_Driver_Standing__dlm>>();
+        Integer batchSize = 5000;
+
+        // Get data from Data Cloud 
+        for ( F1_Driver_Standing__dlm f1ConstStanding : [
+            SELECT
+                driverid__c,
+                driverstandingsid__c,
+                points__c,
+                position__c,
+                positiontext__c,
+                raceid__c,
+                wins__c
+            FROM F1_Driver_Standing__dlm
+        ]) {
+            dataCloudDriverStandings.add(f1ConstStanding);
+
+            // increment a batch
+            if (dataCloudDriverStandings.size() > batchSize) {
+                dataCloudBatchesToUpsert.add(dataCloudDriverStandings);
+                dataCloudDriverStandings = new List<F1_Driver_Standing__dlm>();
+            }
+        }
+
+        // last batch (if required)
+        if (dataCloudDriverStandings.size() > 0) {
+            dataCloudBatchesToUpsert.add(dataCloudDriverStandings);
+            // preserve memory
+            dataCloudDriverStandings = new List<F1_Driver_Standing__dlm>();
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Retrieved and Generated ' + dataCloudBatchesToUpsert.size() + ' Driver Standing Batches from Data Cloud');
+
+        // set up the Upsert Config
+        F1DataCloudUpsertService.UpsertConfig batchClassConfig = new F1DataCloudUpsertService.UpsertConfig('Driver_Standing__c', 'Data_Cloud_Id__c');
+
+        // Submit the Batches
+        for (List<F1_Driver_Standing__dlm> batch : dataCloudBatchesToUpsert) {
+            System.Debug(LoggingLevel.DEBUG, 'Batch Count: ' + batch.size() + ' Submitting...');
+            F1DataCloudSyncDriverStandingsBatch batchJob = new F1DataCloudSyncDriverStandingsBatch(batch, batchClassConfig);
+            Id batchJobId = Database.executeBatch(batchJob, 500);
+            System.Debug(LoggingLevel.DEBUG, 'Driver Standings Sync Batch Added to queue: ' + batchJobId);
+        }       
+    }
 }
