@@ -30,12 +30,14 @@ public class F1DataCloudSyncPitStopsBatch implements Database.Batchable<SObject>
                     Lap__c = f1PitStop.lap__c,
                     Milliseconds__c = f1PitStop.milliseconds__c,
                     Stop__c = f1PitStop.STOP__c,
-                    Time__c = f1PitStop.time__c
+                    Time__c = f1PitStop.time__c,
+                    temp_driver__c = Integer.valueOf(f1PitStop.driverid__c).toString(),
+                    temp_raceid_c__c = Integer.valueOf(f1PitStop.raceid__c).toString()
                 );
                 // Race__c
                 // Driver__c
                 // Link to existing Race using External ID relationship
-                if(!String.isBlank(Integer.valueOf(f1PitStop.raceid__c).toString())) {
+                /*if(!String.isBlank(Integer.valueOf(f1PitStop.raceid__c).toString())) {
                     Race__c race = new Race__c();
                     race.Data_Cloud_Id__c = Integer.valueOf(f1PitStop.raceid__c).toString();
                     newPitStop.Race__r = race; // This creates the relationship link
@@ -45,19 +47,21 @@ public class F1DataCloudSyncPitStopsBatch implements Database.Batchable<SObject>
                     Driver__c driver = new Driver__c();
                     driver.Data_Cloud_Id__c = Integer.valueOf(f1PitStop.driverid__c).toString();
                     newPitStop.Driver__r = driver; // This creates the relationship link
-                }
+                }*/
                 dataCloudPitStopsToUpsert.add(newPitStop);
         }
 
+        insert dataCloudPitStopsToUpsert;
+
         // prepare and upsert contestant records
-        List<SObject> records = new List<SObject>();
+        /*List<SObject> records = new List<SObject>();
         records.addAll(dataCloudPitStopsToUpsert);
 
         F1DataCloudUpsertService.UpsertResult result = F1DataCloudUpsertService.upsertRecords(records, config);
         batchResults.add(result);
         
         System.debug('Batch processed: ' + result.recordsCreated + ' created, ' + 
-                    result.recordsUpdated + ' updated, ' + result.recordsFailed + ' failed');
+                    result.recordsUpdated + ' updated, ' + result.recordsFailed + ' failed'); */
     }
     
     public void finish(Database.BatchableContext BC) {
