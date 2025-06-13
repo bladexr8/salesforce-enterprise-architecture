@@ -32,7 +32,8 @@ public class F1DataCloudSyncPitStopsBatch implements Database.Batchable<SObject>
                     Stop__c = f1PitStop.STOP__c,
                     Time__c = f1PitStop.time__c,
                     temp_driver__c = Integer.valueOf(f1PitStop.driverid__c).toString(),
-                    temp_raceid_c__c = Integer.valueOf(f1PitStop.raceid__c).toString()
+                    temp_raceid_c__c = Integer.valueOf(f1PitStop.raceid__c).toString(),
+                    Batch_Id__c = BC.getJobId()
                 );
                 // Race__c
                 // Driver__c

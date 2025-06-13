@@ -8,10 +8,12 @@ public class DuplicateIdChecker {
         // Get data from Data Cloud 
         for ( F1_Pit_Stop__dlm f1PitStop : [
             SELECT
-                external_id__c
+                id
+                //external_id__c
             FROM F1_Pit_Stop__dlm
         ]) {
             dataCloudPitStops.add(f1PitStop);
+            System.Debug(LoggingLevel.INFO, f1PitStop.id);
         }
 
         System.Debug(LoggingLevel.DEBUG, 'Retrieved ' + dataCloudPitStops.size() + ' PitStop records from Data Cloud');
@@ -19,7 +21,7 @@ public class DuplicateIdChecker {
         List<string> idList = new List<String>();
         // build list of strings to check for duplicates
         for(F1_Pit_Stop__dlm pc: dataCloudPitStops) {
-            idList.add(pc.external_id__c);
+            idList.add(pc.id);
         }
 
         System.Debug(LoggingLevel.DEBUG, 'Constructed ' + idList.size() + ' list of Pit Stop External ids...');
@@ -57,6 +59,41 @@ public class DuplicateIdChecker {
         }
 
         System.Debug(LoggingLevel.DEBUG, 'Constructed ' + idList.size() + ' list of Pit Stop External ids...');
+
+        Map<String, Integer> duplicates = StringDuplicateHandler.findDuplicates(idList);
+
+        System.Debug(LoggingLevel.DEBUG, 'Detected ' + duplicates.size() + ' Duplicates...');
+
+        for (String duplicateString : duplicates.keySet()) {
+            System.debug('DUPLICATE: "' + duplicateString + '" appears ' + duplicates.get(duplicateString) + ' times');
+        }
+
+    } 
+
+    public static void checkDriverStandings() {
+        System.Debug(LoggingLevel.DEBUG,'Checking Driver Standing DMO external ids... Getting Ids from Data Cloud...');
+
+        List<F1_Driver_Standing__dlm> dataCloudDriverStandings = new List<F1_Driver_Standing__dlm>();
+
+        // Get data from Data Cloud 
+        for ( F1_Driver_Standing__dlm f1PitStop : [
+            SELECT
+                driverstandingsid__c
+            FROM F1_Driver_Standing__dlm
+        ]) {
+            dataCloudDriverStandings.add(f1PitStop);
+            System.Debug(LoggingLevel.INFO, Integer.valueOf(f1PitStop.driverstandingsid__c).toString());
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Retrieved ' + dataCloudDriverStandings.size() + ' Driver Standing records from Data Cloud');
+
+        List<string> idList = new List<String>();
+        // build list of strings to check for duplicates
+        for(F1_Driver_Standing__dlm pc: dataCloudDriverStandings) {
+            idList.add(Integer.valueOf(pc.driverstandingsid__c).toString());
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Constructed ' + idList.size() + ' list of Driver Standing External ids...');
 
         Map<String, Integer> duplicates = StringDuplicateHandler.findDuplicates(idList);
 
