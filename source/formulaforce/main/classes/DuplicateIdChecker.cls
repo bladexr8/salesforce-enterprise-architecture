@@ -1,6 +1,6 @@
 public class DuplicateIdChecker {
     
-    public static void checkPitStopIds() {
+    /*public static void checkPitStopIds() {
         System.Debug(LoggingLevel.DEBUG,'Checking PitStop DMO external ids... Getting Ids from Data Cloud...');
 
         List<F1_Pit_Stop__dlm> dataCloudPitStops = new List<F1_Pit_Stop__dlm>();
@@ -8,12 +8,11 @@ public class DuplicateIdChecker {
         // Get data from Data Cloud 
         for ( F1_Pit_Stop__dlm f1PitStop : [
             SELECT
-                id
-                //external_id__c
+                external_id__c
             FROM F1_Pit_Stop__dlm
         ]) {
             dataCloudPitStops.add(f1PitStop);
-            System.Debug(LoggingLevel.INFO, f1PitStop.id);
+            //System.Debug(LoggingLevel.INFO, f1PitStop.id);
         }
 
         System.Debug(LoggingLevel.DEBUG, 'Retrieved ' + dataCloudPitStops.size() + ' PitStop records from Data Cloud');
@@ -21,7 +20,43 @@ public class DuplicateIdChecker {
         List<string> idList = new List<String>();
         // build list of strings to check for duplicates
         for(F1_Pit_Stop__dlm pc: dataCloudPitStops) {
-            idList.add(pc.id);
+            idList.add(pc.external_id__c);
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Constructed ' + idList.size() + ' list of Pit Stop External ids...');
+
+        Map<String, Integer> duplicates = StringDuplicateHandler.findDuplicates(idList);
+
+        System.Debug(LoggingLevel.DEBUG, 'Detected ' + duplicates.size() + ' Duplicates...');
+
+        for (String duplicateString : duplicates.keySet()) {
+            System.debug('DUPLICATE: "' + duplicateString + '" appears ' + duplicates.get(duplicateString) + ' times');
+        }
+
+    } */
+
+
+    public static void checkPitStopIds2() {
+        System.Debug(LoggingLevel.DEBUG,'Checking PitStop DMO external ids... Getting Ids from Data Cloud...');
+
+        List<F1_Pit_Stops__dlm> dataCloudPitStops = new List<F1_Pit_Stops__dlm>();
+
+        // Get data from Data Cloud 
+        for ( F1_Pit_Stops__dlm f1PitStop : [
+            SELECT
+                external_id__c
+            FROM F1_Pit_Stops__dlm
+        ]) {
+            dataCloudPitStops.add(f1PitStop);
+            //System.Debug(LoggingLevel.INFO, f1PitStop.id);
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Retrieved ' + dataCloudPitStops.size() + ' PitStop records from Data Cloud');
+
+        List<string> idList = new List<String>();
+        // build list of strings to check for duplicates
+        for(F1_Pit_Stops__dlm pc: dataCloudPitStops) {
+            idList.add(pc.external_id__c);
         }
 
         System.Debug(LoggingLevel.DEBUG, 'Constructed ' + idList.size() + ' list of Pit Stop External ids...');
@@ -35,6 +70,7 @@ public class DuplicateIdChecker {
         }
 
     } 
+
 
     public static void checkPitStopIdsFromSF() {
         System.Debug(LoggingLevel.DEBUG,'Checking PitStop external ids... Getting Ids from SF...');

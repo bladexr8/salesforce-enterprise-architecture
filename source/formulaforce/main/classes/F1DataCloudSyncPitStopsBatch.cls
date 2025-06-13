@@ -16,13 +16,13 @@ public class F1DataCloudSyncPitStopsBatch implements Database.Batchable<SObject>
     
     public void execute(Database.BatchableContext BC, List<SObject> batch) {
 
-        List<F1_Pit_Stop__dlm> dataCloudPitStops = new List<F1_Pit_Stop__dlm>();
+        List<F1_Pit_Stops__dlm> dataCloudPitStops = new List<F1_Pit_Stops__dlm>();
         List<Pit_Stop__c> dataCloudPitStopsToUpsert = new List<Pit_Stop__c>();
 
-        dataCloudPitStops.addAll((List<F1_Pit_Stop__dlm>)batch);
+        dataCloudPitStops.addAll((List<F1_Pit_Stops__dlm>)batch);
         
         // convert to Pit Stop records
-        for (F1_Pit_Stop__dlm f1PitStop : dataCloudPitStops) {
+        for (F1_Pit_Stops__dlm f1PitStop : dataCloudPitStops) {
 
                 Pit_Stop__c newPitStop = new Pit_Stop__c(
                     Data_Cloud_Id__c = f1PitStop.external_id__c,
@@ -31,14 +31,12 @@ public class F1DataCloudSyncPitStopsBatch implements Database.Batchable<SObject>
                     Milliseconds__c = f1PitStop.milliseconds__c,
                     Stop__c = f1PitStop.STOP__c,
                     Time__c = f1PitStop.time__c,
-                    temp_driver__c = Integer.valueOf(f1PitStop.driverid__c).toString(),
-                    temp_raceid_c__c = Integer.valueOf(f1PitStop.raceid__c).toString(),
                     Batch_Id__c = BC.getJobId()
                 );
                 // Race__c
                 // Driver__c
                 // Link to existing Race using External ID relationship
-                /*if(!String.isBlank(Integer.valueOf(f1PitStop.raceid__c).toString())) {
+                if(!String.isBlank(Integer.valueOf(f1PitStop.raceid__c).toString())) {
                     Race__c race = new Race__c();
                     race.Data_Cloud_Id__c = Integer.valueOf(f1PitStop.raceid__c).toString();
                     newPitStop.Race__r = race; // This creates the relationship link
@@ -48,21 +46,19 @@ public class F1DataCloudSyncPitStopsBatch implements Database.Batchable<SObject>
                     Driver__c driver = new Driver__c();
                     driver.Data_Cloud_Id__c = Integer.valueOf(f1PitStop.driverid__c).toString();
                     newPitStop.Driver__r = driver; // This creates the relationship link
-                }*/
+                }
                 dataCloudPitStopsToUpsert.add(newPitStop);
         }
 
-        insert dataCloudPitStopsToUpsert;
-
         // prepare and upsert contestant records
-        /*List<SObject> records = new List<SObject>();
+        List<SObject> records = new List<SObject>();
         records.addAll(dataCloudPitStopsToUpsert);
 
         F1DataCloudUpsertService.UpsertResult result = F1DataCloudUpsertService.upsertRecords(records, config);
         batchResults.add(result);
         
         System.debug('Batch processed: ' + result.recordsCreated + ' created, ' + 
-                    result.recordsUpdated + ' updated, ' + result.recordsFailed + ' failed'); */
+                    result.recordsUpdated + ' updated, ' + result.recordsFailed + ' failed'); 
     }
     
     public void finish(Database.BatchableContext BC) {

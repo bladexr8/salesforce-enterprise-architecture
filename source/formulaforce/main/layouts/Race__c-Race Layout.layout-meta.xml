@@ -152,7 +152,14 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Driver__c</fields>
+        <fields>Lap__c</fields>
+        <fields>Stop__c</fields>
+        <fields>Time__c</fields>
+        <fields>Duration__c</fields>
         <relatedList>Pit_Stop__c.Race__c</relatedList>
+        <sortField>Lap__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
