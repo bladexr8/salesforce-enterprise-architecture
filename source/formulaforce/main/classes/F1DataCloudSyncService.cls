@@ -492,4 +492,55 @@ public with sharing class F1DataCloudSyncService {
             System.Debug(LoggingLevel.DEBUG, 'Pit Stop Sync Batch Added to queue: ' + batchJobId);
         }       
     }
+
+    // sync Qualifying
+    public static void syncQualifying() {
+
+        List<F1_Qualifying__dlm> dataCloudQuals = new List<F1_Qualifying__dlm>();
+        List<List<F1_Qualifying__dlm>> dataCloudBatchesToUpsert = new List<List<F1_Qualifying__dlm>>();
+        Integer batchSize = 5000;
+
+        // Get data from Data Cloud 
+        for ( F1_Qualifying__dlm f1Qual : [
+            SELECT
+                constructorid__c,
+                driverid__c,
+                number__c,
+                position__c,
+                q1__c,
+                q2__c,
+                q3__c,
+                qualifyid__c,
+                raceid__c
+            FROM F1_Qualifying__dlm
+        ]) {
+            dataCloudQuals.add(f1Qual);
+
+            // increment a batch
+            if (dataCloudQuals.size() > batchSize) {
+                dataCloudBatchesToUpsert.add(dataCloudQuals);
+                dataCloudQuals = new List<F1_Qualifying__dlm>();
+            }
+        }
+
+        // last batch (if required)
+        if (dataCloudQuals.size() > 0) {
+            dataCloudBatchesToUpsert.add(dataCloudQuals);
+            // preserve memory
+            dataCloudQuals = new List<F1_Qualifying__dlm>();
+        }
+
+        System.Debug(LoggingLevel.DEBUG, 'Retrieved and Generated ' + dataCloudBatchesToUpsert.size() + ' Qualifting Batches from Data Cloud');
+
+        // set up the Upsert Config
+        F1DataCloudUpsertService.UpsertConfig batchClassConfig = new F1DataCloudUpsertService.UpsertConfig('Qualifying__c', 'Data_Cloud_Id__c');
+
+        // Submit the Batches
+        for (List<F1_Qualifying__dlm> batch : dataCloudBatchesToUpsert) {
+            System.Debug(LoggingLevel.DEBUG, 'Batch Count: ' + batch.size() + ' Submitting...');
+            F1DataCloudSyncQualifyingBatch batchJob = new F1DataCloudSyncQualifyingBatch(batch, batchClassConfig);
+            Id batchJobId = Database.executeBatch(batchJob, 500);
+            System.Debug(LoggingLevel.DEBUG, 'Qualifting Sync Batch Added to queue: ' + batchJobId);
+        }       
+    }
 }
