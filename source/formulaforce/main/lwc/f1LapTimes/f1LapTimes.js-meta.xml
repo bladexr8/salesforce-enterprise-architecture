@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
-    <isExposed>false</isExposed>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="recordId" type="String" default="{!recordId}" />
+        </targetConfig>
+    </targetConfigs>
+    <masterLabel>F1 Lap Times</masterLabel>
+    <description>Displays F1 lap times from Data Cloud for the current race record</description>
 </LightningComponentBundle>
