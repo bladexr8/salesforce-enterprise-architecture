@@ -76,4 +76,107 @@ export default class F1LapTimes extends LightningElement {
         // e.g. 'Race__c' or whatever hosting object is
         return 'Race__c';
     }
+
+    async loadLapTimes() {
+        try {
+            this.isLoading = true;
+            const result = await getLapTimes({ raceId: this.dataCloudId });
+            this.data = result || [];
+            this.filteredData = [...this.data];
+            this.createDriverOptions();
+            this.sortData('driver_name__c', 'asc');
+        } catch (error) {
+            this.error = error.body?.message || 'Error loading lap times';
+            this.showToast('Error', this.error, 'error');
+        } finally {
+            this.isLoading = false;
+        }
+    }
+    
+    createDriverOptions() {
+        const drivers = [... new Set(this.data.map(row => row.driver_name__c))];
+        this.driverOptions = drivers.map(driver => ({ label: driver, value: driver }));
+    }
+
+    handleDriverFilter(event) {
+        this.selectedDrivers = event.detail.value;
+        this.filterData();
+    }
+
+    filterData() {
+        if (this.selectedDrivers.length === 0) {
+            this.filteredData = [...this.data];
+        } else {
+            this.filteredData = this.data.filter(row => this.selectedDrivers.includes(row.driver_name__c));
+        }
+
+        // Maintain current sortng after filtering
+        if (this.sortedBy) {
+            TickerSymbol.sortData(this.sortedBy, this.sortDirection);
+        }
+    }
+
+    handleSort(event) {
+        const { fieldName: sortedBy, sortDirection } = event.detail;
+        this.sortData(sortedBy, sortDirection);
+    }
+
+    sortData(fieldName, direction) {
+        this.sortedBy = fieldName;
+        this.sortDirection = direction;
+
+        const parseData = [... this.filteredData];
+        
+        const isReverse = direction === 'asc' ? 1: -1;
+        
+        parseData.sort((a, b) => {
+            let aVal = a[fieldName] || '';
+            let bVal = b[fieldName] || '';
+
+            // Handle numeric fields
+            if (fieldName === 'lap__c' || fieldName === 'position__c' || fieldName === 'milliseconds__c') {
+                aVal = parseFloat(aVal) || 0;
+                bVal = parseFloat(bVal) || 0;
+            }
+
+            // Primary sort
+            let result = 0;
+            if (aVal > bVal) result = 1;
+            if (aVal < bVal) result = -1;
+
+            // Secondary sort by lap number if sorting by driver name
+            if (result === 0 && fieldName === 'driver_name__c') {
+                const aLap = parseFloat(a.lap__c) || 0;
+                const bLap = parseFloat(b.lap__c) || 0;
+                if (aLap > bLap) result = 1;
+                if (aLap < bLap) result = -1;
+            }
+
+            return result * isReverse;
+        });
+
+        this.filteredData = parseData;
+    }
+
+    handleRefresh() {
+        this.loadLapTimes();
+    }
+
+    showToast(title, message, variant) {
+        const evt = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant
+        });
+        this.dispatchEvent(evt);
+    }
+
+    get hasData() {
+        return this.filteredData && this.filteredData.length > 0;
+    }
+
+    get recordCount() {
+        return this.filteredData ? this.filteredData.length : 0;
+    }
+
 }
