@@ -53,12 +53,13 @@ export default class F1LapTimes extends LightningElement {
     // wire to get the hosting record's Data_Cloud_Id__c field
     @wire(getRecord, {
         recordId: '$recordId',
-        fields: ['$objectApiName.Data_Cloud_Id__c']
+        fields: [`Race__c.Data_Cloud_Id__c`]
     })
     wiredRecord({ error, data }) {
         if (data) {
             this.dataCloudId = data.fields.Data_Cloud_Id__c?.value;
             if (this.dataCloudId) {
+                console.log(`Race Data Cloud Id = ${this.dataCloudId}`);
                 this.loadLapTimes();
             } else {
                 this.error = 'No Data Cloud Id found on this record';
@@ -71,11 +72,11 @@ export default class F1LapTimes extends LightningElement {
     }
 
     // Get object API name dynamically
-    get objectApiName() {
+    //get objectApiName() {
         // This would need to be set based on hosting object
         // e.g. 'Race__c' or whatever hosting object is
-        return 'Race__c';
-    }
+    //    return 'Race__c';
+    //}
 
     async loadLapTimes() {
         try {
@@ -99,14 +100,18 @@ export default class F1LapTimes extends LightningElement {
     }
 
     handleDriverFilter(event) {
+        console.log('[handleDriverFilter] Filtering Laps...');
         this.selectedDrivers = event.detail.value;
         this.filterData();
+        console.log('[handleDriverFilter] Finished Filtering Laps...');
     }
 
     filterData() {
+        console.log('[filterData] Filtering Laps...');
         if (this.selectedDrivers.length === 0) {
             this.filteredData = [...this.data];
         } else {
+            console.log(`Drivers Selected = ${this.selectedDrivers.length}`);
             this.filteredData = this.data.filter(row => this.selectedDrivers.includes(row.driver_name__c));
         }
 
@@ -114,6 +119,7 @@ export default class F1LapTimes extends LightningElement {
         if (this.sortedBy) {
             TickerSymbol.sortData(this.sortedBy, this.sortDirection);
         }
+        console.log('[filterData] Finished Filtering Laps...');
     }
 
     handleSort(event) {
@@ -178,5 +184,9 @@ export default class F1LapTimes extends LightningElement {
     get recordCount() {
         return this.filteredData ? this.filteredData.length : 0;
     }
+
+    get shouldShowNoDataMessage() {
+    return !this.hasData && !this.isLoading && !this.error;
+}
 
 }

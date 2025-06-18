@@ -12,12 +12,12 @@
         
         <div class="slds-card__body slds-card__body_inner">
             <!-- Loading Spinner -->
-            <template if:true={isLoading}>
+            <template lwc:if={isLoading}>
                 <lightning-spinner alternative-text="Loading lap times..." size="medium"></lightning-spinner>
             </template>
 
             <!-- Error Message -->
-            <template if:true={error}>
+            <template lwc:if={error}>
                 <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
                     <span class="slds-assistive-text">Error</span>
                     <h2>{error}</h2>
@@ -25,7 +25,7 @@
             </template>
 
             <!-- Filter Controls -->
-            <template if:true={hasData}>
+            <template lwc:if={hasData}>
                 <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_medium">
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
                         <lightning-dual-listbox
@@ -62,7 +62,7 @@
             </template>
 
             <!-- No Data Message -->
-            <template if:false={hasData} if:false={isLoading} if:false={error}>
+            <template lwc:if={shouldShowNoDataMessage}>
                 <div class="slds-align_absolute-center slds-m-vertical_large">
                     <lightning-icon icon-name="utility:info" size="medium" class="slds-m-right_small"></lightning-icon>
                     <span class="slds-text-body_regular">No lap times found for this race.</span>
