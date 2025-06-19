@@ -80,6 +80,7 @@
 		<members>Race__c.Qualifying_Date__c</members>
 		<members>Race__c.Qualifying_Time__c</members>
 		<members>Race__c.Race_Date__c</members>
+		<members>Race__c.Race_Summary__c</members>
 		<members>Race__c.Race_Time__c</members>
 		<members>Race__c.Race_URL__c</members>
 		<members>Race__c.Round__c</members>
@@ -90,6 +91,7 @@
 		<members>Race__c.Status__c</members>
 		<members>Race__c.Total_DNFs__c</members>
 		<members>Race__c.Year__c</members>
+		<members>Race_c.Data_Cloud_Id_Int__c</members>
 		<members>Race_c.FastestLapBy__c</members>
 		<members>Season__c.URL__c</members>
 		<members>Season__c.Year__c</members>
@@ -130,6 +132,14 @@
 		<members>Race_Overview</members>
 		<members>Race_Record_Page</members>
 		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>Get_F1_Race_Data</members>
+		<name>Flow</name>
+	</types>
+	<types>
+		<members>F1_Race_Summary</members>
+		<name>GenAiPromptTemplate</name>
 	</types>
 	<types>
 		<members>Circuit__c-Circuit Layout</members>

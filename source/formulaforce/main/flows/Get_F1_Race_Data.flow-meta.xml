@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Send info to prompt no Driver Results found</description>
+        <name>Prompt_No_Driver_Results</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Prompt No Driver Results</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>No Driver Results found for F1 Race
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Team_Results</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Update Prompt with info no Lap Times found</description>
+        <name>Prompt_No_Lap_TImes_Found</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Prompt No Lap TImes Found</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>No Lap Times found for F1 Race
+</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Update prompt with info no Pit Stops found</description>
+        <name>Prompt_No_Pit_Stops_Found</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Prompt No Pit Stops Found</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>No Pit Stops found for F1 Race
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Lap_Times</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Update AI Prompt with info no Qualifying Records found</description>
+        <name>Prompt_No_Qualifying_Records</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Prompt No Qualifying Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>No Qualifying Records found for F1 Race
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Driver_Results</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Update Prompt with info no Team results found</description>
+        <name>Prompt_No_Team_Results_Found</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Prompt No Team Results Found</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>No Team Results found for F1 Race
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Pit_Stops</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Send the Driver Results to the AI Prompt</description>
+        <name>Send_Driver_Results_to_Prompt</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Send Driver Results to Prompt</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Summarise the F1 Race Driver Results using:
+Driver Name:{!Loop_Driver_Result_Records.Driver__r.Name}
+Race Position: {!Loop_Driver_Result_Records.Race_Position_Order__c}
+Championship Points:{!Loop_Driver_Result_Records.ChampionshipPoints__c}
+Finishing Status:{!Loop_Driver_Result_Records.Finishing_Status__c}
+Team:{!Loop_Driver_Result_Records.Team__r.Name}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Driver_Result_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Send Lap TIme Details to AI Prompt</description>
+        <name>Send_Lap_TImes_to_Prompt</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Send Lap TImes to Prompt</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Summarise the F1 Race Lap Times using:
+Driver Name: {!Loop_Lap_TIme_Records.driver_name__c}
+Lap: {!Loop_Lap_TIme_Records.lap__c}
+Position: {!Loop_Lap_TIme_Records.position__c}
+Time: {!Loop_Lap_TIme_Records.time__c}
+Milliseconds: {!Loop_Lap_TIme_Records.milliseconds__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Lap_TIme_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Send Pit Stop Details to AI Prompt</description>
+        <name>Send_Pit_Stops_to_Prompt</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Send Pit Stops to Prompt</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Summarise the F1 Race Pit Stops using:
+Driver: {!Loop_Pit_Stop_Records.Driver__r.Name}
+Lap: {!Loop_Pit_Stop_Records.Lap__c}
+Stop: {!Loop_Pit_Stop_Records.Stop__c}
+Time: {!Loop_Pit_Stop_Records.Time__c}
+Duration: {!Loop_Pit_Stop_Records.Duration__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Pit_Stop_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Send Qualifying Records to AI prompt</description>
+        <name>Send_Qualifying_Records_to_Prompt</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Send Qualifying Records to Prompt</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Summarise the F1 Race Qualifying Results using:
+Driver: {!Loop_Qualifying_Records.Driver__r.Name}
+Qualifying Position:{!Loop_Qualifying_Records.Position__c}
+Qualifying Session 1 Time:{!Loop_Qualifying_Records.Qualifying_1_Time__c}
+Qualifying Session 2 Time: {!Loop_Qualifying_Records.Qualifying_2_Time__c}
+Qualifying Session 3 Time: {!Loop_Qualifying_Records.Qualifying_3_Time__c}
+Team:{!Loop_Qualifying_Records.Team__r.Name}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Qualifying_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Send Teams Result details to AI prompt</description>
+        <name>Send_Team_Results_to_Prompt</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Send Team Results to Prompt</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Summarise the F1 Race Team Results using:
+Team: {!Loop_Team_Result_Records.Team__r.Name}
+Championship Points:{!Loop_Team_Result_Records.Championship_Points__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Team_Result_Records</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check if Driver Result Records Found</description>
+        <name>Driver_Results_Found</name>
+        <label>Driver Results Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Prompt_No_Driver_Results</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Driver Result Records Found</defaultConnectorLabel>
+        <rules>
+            <name>Driver_Results_Records_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Driver_Results</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Driver_Result_Records</targetReference>
+            </connector>
+            <label>Driver Results Records Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Loop though Lap Times (from Data Cloud) for an F1 Race and add relevant details to AI Prompt</description>
+        <name>Lap_Times_Found</name>
+        <label>Lap Times Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Prompt_No_Lap_TImes_Found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Lap TIme Records Found</defaultConnectorLabel>
+        <rules>
+            <name>Lap_TIme_Records_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Lap_Times</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Lap_TIme_Records</targetReference>
+            </connector>
+            <label>Lap TIme Records Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if Pit Stop Records Found</description>
+        <name>Pit_Stop_Records_Found</name>
+        <label>Pit Stop Records Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Prompt_No_Pit_Stops_Found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Pit Stops Found</defaultConnectorLabel>
+        <rules>
+            <name>Pit_Stops_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Pit_Stops</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Pit_Stop_Records</targetReference>
+            </connector>
+            <label>Pit Stops Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if Qualifying Records Found</description>
+        <name>Qualifying_Records_Found</name>
+        <label>Qualifying Records Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Prompt_No_Qualifying_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Qualifying Records Found</defaultConnectorLabel>
+        <rules>
+            <name>Qualifying_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Qualifying_Records</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Qualifying_Records</targetReference>
+            </connector>
+            <label>Qualifying Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if Team Result Records Found</description>
+        <name>Team_Results_Found</name>
+        <label>Team Results Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Prompt_No_Team_Results_Found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Team Result Records Found</defaultConnectorLabel>
+        <rules>
+            <name>Team_Result_Records_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Team_Results</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Team_Result_Records</targetReference>
+            </connector>
+            <label>Team Result Records Found</label>
+        </rules>
+    </decisions>
+    <description>Get F1 Race Data for the F1 Race Summary AI Prompt</description>
+    <environments>Default</environments>
+    <interviewLabel>Get F1 Race Data {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Get F1 Race Data</label>
+    <loops>
+        <description>Loop through Driver Result Records and add relevant information to AI Prompt</description>
+        <name>Loop_Driver_Result_Records</name>
+        <label>Loop Driver Result Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Driver_Results</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Driver_Results_to_Prompt</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Team_Results</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop through Lap Time Records and add relevant details to AI Prompt</description>
+        <name>Loop_Lap_TIme_Records</name>
+        <label>Loop Lap TIme Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Lap_Times</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Lap_TImes_to_Prompt</targetReference>
+        </nextValueConnector>
+    </loops>
+    <loops>
+        <description>Loop through Pit Stop Records and add relevant data to the AI Prompt</description>
+        <name>Loop_Pit_Stop_Records</name>
+        <label>Loop Pit Stop Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Pit_Stops</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Pit_Stops_to_Prompt</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Lap_Times</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop through Qualifying Records and send relevant information to AI Prompt</description>
+        <name>Loop_Qualifying_Records</name>
+        <label>Loop Qualifying Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Qualifying_Records</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Qualifying_Records_to_Prompt</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Driver_Results</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop through Team Result Records and add relevant data to the AI Prompt</description>
+        <name>Loop_Team_Result_Records</name>
+        <label>Loop Team Result Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Team_Results</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Team_Results_to_Prompt</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Pit_Stops</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>PromptFlow</processType>
+    <recordLookups>
+        <description>Get Driver Result Records for a Race</description>
+        <name>Get_Driver_Results</name>
+        <label>Get Driver Results</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Driver_Results_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Race__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Input.RelatedEntity.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Contestant__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get Lap Times for an F1 Race</description>
+        <name>Get_Lap_Times</name>
+        <label>Get Lap Times</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Lap_Times_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>raceid__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Input.RelatedEntity.Data_Cloud_Id_Int__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>F1_Lap_Time__dlm</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the Pit Stop records for an F1 race</description>
+        <name>Get_Pit_Stops</name>
+        <label>Get Pit Stops</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Pit_Stop_Records_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Race__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Input.RelatedEntity.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Pit_Stop__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get Qualifying Records for a Race</description>
+        <name>Get_Qualifying_Records</name>
+        <label>Get Qualifying Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Qualifying_Records_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Race__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Input.RelatedEntity.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Qualifying__c</object>
+        <sortField>Position__c</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get Team Results for an F1 Race</description>
+        <name>Get_Team_Results</name>
+        <label>Get Team Results</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Team_Results_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Race__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Input.RelatedEntity.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Team_Result__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <capabilityTypes>
+            <name>PromptTemplateType://einstein_gpt__fieldCompletion</name>
+            <capabilityName>PromptTemplateType://einstein_gpt__fieldCompletion</capabilityName>
+            <inputs>
+                <name>RelatedEntity</name>
+                <capabilityInputName>RelatedEntity</capabilityInputName>
+                <dataType>SOBJECT://Race__c</dataType>
+                <isCollection>false</isCollection>
+            </inputs>
+        </capabilityTypes>
+        <connector>
+            <targetReference>Get_Qualifying_Records</targetReference>
+        </connector>
+        <triggerType>Capability</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

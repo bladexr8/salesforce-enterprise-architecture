@@ -380,6 +380,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Race__c.Data_Cloud_Id_Int__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Race__c.Data_Cloud_Id__c</field>
         <readable>true</readable>
@@ -447,6 +452,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Race__c.Race_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Race__c.Race_Summary__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

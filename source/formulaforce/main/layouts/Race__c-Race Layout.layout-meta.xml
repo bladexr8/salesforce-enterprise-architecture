@@ -79,6 +79,10 @@
                 <behavior>Edit</behavior>
                 <field>Sprint_Time__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Race_Summary__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

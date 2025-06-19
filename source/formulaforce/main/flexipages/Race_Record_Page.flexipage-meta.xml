@@ -166,6 +166,20 @@
                 <identifier>RecordRace_URL_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>generativePromptTemplate</name>
+                    <value>F1_Race_Summary</value>
+                </fieldInstanceProperties>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Race_Summary__c</fieldItem>
+                <identifier>RecordRace_Summary_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-1dbc6229-f7c7-4c30-8c20-643844d7dfb3</name>
         <type>Facet</type>
     </flexiPageRegions>

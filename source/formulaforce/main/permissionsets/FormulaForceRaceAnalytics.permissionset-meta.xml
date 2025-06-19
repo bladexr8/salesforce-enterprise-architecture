@@ -397,6 +397,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Race__c.Race_Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Race__c.Race_Time__c</field>
         <readable>true</readable>
     </fieldPermissions>

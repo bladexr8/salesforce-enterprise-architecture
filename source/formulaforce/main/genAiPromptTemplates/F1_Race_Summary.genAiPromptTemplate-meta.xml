@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_2</activeVersionIdentifier>
+    <description>Use AI to generate a summary of an F1 race.</description>
+    <developerName>F1_Race_Summary</developerName>
+    <masterLabel>F1 Race Summary</masterLabel>
+    <relatedEntity>Race__c</relatedEntity>
+    <relatedField>Race__c.Race_Summary__c</relatedField>
+    <templateVersions>
+        <content>You are a support representative who is tasked with creating a short summary of a Formula One Motorsport Race. Your target audience are Formula One Race Enthusiasts who want to read a progressive description of a race from start to finish.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Race__c</definition>
+            <referenceName>Input:Race__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a support representative who is tasked with creating a short summary of a Formula One Motorsport Race. Your target audience are Formula One Race Enthusiasts who want to read a progressive description of a race from start to finish. The summary should use relevant grounded data from the system combined with commentary from the AI Model or Internet Sources where applicable. Also use information from the Race URL Field on the Race record if accessible.
+
+&quot;&quot;&quot;
+Race Data:
+{!$Flow:Get_F1_Race_Data.Prompt}
+
+Race URL:
+{!$Input:Race__c.Race_URL__c}
+
+&quot;&quot;&quot;
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Race__c</definition>
+            <referenceName>Input:Race__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>flow://Get_F1_Race_Data</definition>
+            <parameters>
+                <definition>SOBJECT://Race__c</definition>
+                <isRequired>true</isRequired>
+                <parameterName>RelatedEntity</parameterName>
+                <valueExpression>{!$Input:Race__c}</valueExpression>
+            </parameters>
+            <referenceName>Flow:Get_F1_Race_Data</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_2</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__fieldCompletion</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
