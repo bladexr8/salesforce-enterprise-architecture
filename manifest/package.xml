@@ -126,6 +126,12 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
+		<members>Race_Analytics_UtilityBar</members>
+		<members>Race_Overview</members>
+		<members>Race_Record_Page</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
 		<members>Circuit__c-Circuit Layout</members>
 		<members>Contestant__c-Contestant Layout</members>
 		<members>Driver_Standing__c-Driver Standing Layout</members>
