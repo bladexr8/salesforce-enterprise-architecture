@@ -101,6 +101,7 @@ export default class F1LapTimes extends LightningElement {
 
     handleDriverFilter(event) {
         console.log('[handleDriverFilter] Filtering Laps...');
+        console.log(`Selected Driver(s) = ${event.detail.value}`);
         this.selectedDrivers = event.detail.value;
         this.filterData();
         console.log('[handleDriverFilter] Finished Filtering Laps...');
@@ -111,13 +112,22 @@ export default class F1LapTimes extends LightningElement {
         if (this.selectedDrivers.length === 0) {
             this.filteredData = [...this.data];
         } else {
+            //console.log([...this.selectedDrivers]);
             console.log(`Drivers Selected = ${this.selectedDrivers.length}`);
-            this.filteredData = this.data.filter(row => this.selectedDrivers.includes(row.driver_name__c));
+            [...this.selectedDrivers].forEach((d) => console.log(d));
+            console.log([...this.selectedDrivers].includes("Alexander Albon"));
+            this.filteredData = this.data.filter((row) => {
+                //filteredRows++;
+                //console.log(`Filtering Row ${filteredRows} [${row.driver_name__c}]`);
+                return [...this.selectedDrivers].includes(row.driver_name__c);
+            });
+            console.log([...this.filteredData].length); 
+            console.log(`Filtered List for Drivers Selected = ${this.selectedDrivers.length}`);
         }
 
         // Maintain current sortng after filtering
         if (this.sortedBy) {
-            TickerSymbol.sortData(this.sortedBy, this.sortDirection);
+            this.sortData(this.sortedBy, this.sortDirection);
         }
         console.log('[filterData] Finished Filtering Laps...');
     }
