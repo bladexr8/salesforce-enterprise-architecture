@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Race Summary" icon-name="standard:article">
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <template if:true={hasContent}>
+                <div class="markdown-content" lwc:dom="manual"></div>
+            </template>
+            <template if:false={hasContent}>
+                <div class="slds-text-align_center slds-p-vertical_large">
+                    <lightning-icon 
+                        icon-name="utility:info" 
+                        size="medium" 
+                        alternative-text="No content">
+                    </lightning-icon>
+                    <p class="slds-text-color_weak slds-m-top_small">
+                        No race summary available
+                    </p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
