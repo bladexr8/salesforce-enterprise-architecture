@@ -5,40 +5,45 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 const FIELDS = ['Race__c.Race_Summary__c'];
 
 export default class RaceMarkdownViewer extends LightningElement {
-  @api recordId;
+    @api recordId;
+    
+    race;
+    error;
+    renderedMarkdown = '';
 
-  race;
-  error;
-  renderedMarkdown = '';
-
-  @wire(getRecord, { recordId: '$recordId', fields: FIELDS})
-  wiredRace({ error, data }) {
-    if (data) {
-      this.race = data;
-      this.error = undefined;
-      console.log(`Race Summary = ${this.race.fields.Race_Summary__c.value}`);
-      const markdownContent = this.race.fields.Race_Summary__c.value;
-      if (markdownContent) {
-        this.renderedMarkdown = this.convertMarkdownToHtml(markdownContent);
-      } else {
-        this.renderedMarkdown = '<p><em>No race summary available</em></p>';
-      }
-    } else if (error) {
-      this.error = error;
-      this.race = undefined;
-      this.showErrorToast();
+    @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
+    wiredRace({ error, data }) {
+        if (data) {
+            this.race = data;
+            this.error = undefined;
+            console.log('Race data received:', data);
+            
+            const markdownContent = this.race.fields.Race_Summary__c.value;
+            console.log('Markdown content:', markdownContent);
+            
+            if (markdownContent) {
+                this.renderedMarkdown = this.convertMarkdownToHtml(markdownContent);
+                console.log('Rendered HTML:', this.renderedMarkdown);
+            } else {
+                this.renderedMarkdown = '<p><em>No race summary available</em></p>';
+            }
+        } else if (error) {
+            this.error = error;
+            this.race = undefined;
+            console.error('Error loading race data:', error);
+            this.showErrorToast();
+        }
     }
-}
 
-  convertMarkdownToHtml(markdown) {
+    convertMarkdownToHtml(markdown) {
         if (!markdown) return '';
         
         let html = markdown;
         
         // Headers (must be processed first)
-        html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-        html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-        html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+        html = html.replace(/^### (.*$)/gim, '<br /><br /><h3>$1</h3>');
+        html = html.replace(/^## (.*$)/gim, '<br /><br /><h2>$1</h2>');
+        html = html.replace(/^# (.*$)/gim, '<br /><br /><h1>$1</h1>');
         
         // Bold
         html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -57,42 +62,93 @@ export default class RaceMarkdownViewer extends LightningElement {
         // Links
         html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
         
-        // Unordered lists
-        html = html.replace(/^\* (.+$)/gim, '<li>$1</li>');
-        html = html.replace(/^- (.+$)/gim, '<li>$1</li>');
+        // Strikethrough
+        html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
         
-        // Ordered lists
-        html = html.replace(/^\d+\. (.+$)/gim, '<li>$1</li>');
+        // Horizontal rules (before processing line breaks)
+        html = html.replace(/^---$/gim, '<hr>');
+        html = html.replace(/^\*\*\*$/gim, '<hr>');
         
-        // Wrap consecutive list items in ul/ol tags
-        html = html.replace(/(<li>.*<\/li>)/gs, (match) => {
-            // Simple heuristic: if it contains numbered items, use ol, otherwise ul
-            const hasNumbers = markdown.match(/^\d+\./gm);
-            const tag = hasNumbers ? 'ol' : 'ul';
-            return `<${tag}>${match}</${tag}>`;
-        });
+        // Process lists
+        html = this.processLists(html);
         
         // Blockquotes
         html = html.replace(/^> (.+$)/gim, '<blockquote>$1</blockquote>');
         
-        // Horizontal rules
-        html = html.replace(/^---$/gim, '<hr>');
-        html = html.replace(/^\*\*\*$/gim, '<hr>');
+        // Convert double line breaks to paragraph breaks
+        html = html.replace(/\n\s*\n/g, '</p><p>');
         
-        // Line breaks and paragraphs
-        html = html.replace(/\n\n/g, '</p><p>');
+        // Convert single line breaks to <br> tags
         html = html.replace(/\n/g, '<br>');
         
         // Wrap in paragraph tags if not already wrapped in block elements
-        if (!html.match(/^<(h[1-6]|div|p|ul|ol|blockquote|pre)/)) {
+        if (!html.match(/^<(h[1-6]|div|p|ul|ol|blockquote|pre|hr)/)) {
             html = '<p>' + html + '</p>';
         }
         
-        // Clean up empty paragraphs
+        // Clean up empty paragraphs and extra breaks
         html = html.replace(/<p><\/p>/g, '');
         html = html.replace(/<p>\s*<\/p>/g, '');
+        html = html.replace(/<br\s*\/?>\s*<\/p>/g, '</p>');
+        html = html.replace(/<p>\s*<br\s*\/?>/g, '<p>');
         
         return html;
+    }
+
+    processLists(html) {
+        // Split into lines for processing
+        const lines = html.split('\n');
+        const result = [];
+        let inUnorderedList = false;
+        let inOrderedList = false;
+        
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const unorderedMatch = line.match(/^[\*\-\+]\s+(.+)$/);
+            const orderedMatch = line.match(/^\d+\.\s+(.+)$/);
+            
+            if (unorderedMatch) {
+                if (!inUnorderedList) {
+                    if (inOrderedList) {
+                        result.push('</ol>');
+                        inOrderedList = false;
+                    }
+                    result.push('<ul>');
+                    inUnorderedList = true;
+                }
+                result.push(`<li>${unorderedMatch[1]}</li>`);
+            } else if (orderedMatch) {
+                if (!inOrderedList) {
+                    if (inUnorderedList) {
+                        result.push('</ul>');
+                        inUnorderedList = false;
+                    }
+                    result.push('<ol>');
+                    inOrderedList = true;
+                }
+                result.push(`<li>${orderedMatch[1]}</li>`);
+            } else {
+                if (inUnorderedList) {
+                    result.push('</ul>');
+                    inUnorderedList = false;
+                }
+                if (inOrderedList) {
+                    result.push('</ol>');
+                    inOrderedList = false;
+                }
+                result.push(line);
+            }
+        }
+        
+        // Close any remaining lists
+        if (inUnorderedList) {
+            result.push('</ul>');
+        }
+        if (inOrderedList) {
+            result.push('</ol>');
+        }
+        
+        return result.join('\n');
     }
 
     showErrorToast() {
@@ -105,7 +161,6 @@ export default class RaceMarkdownViewer extends LightningElement {
     }
 
     get hasContent() {
-        return this.renderedMarkdown && this.renderedMarkdown.trim() !== '';
+        return this.renderedMarkdown && this.renderedMarkdown.trim() !== '' && this.renderedMarkdown !== '<p><em>No race summary available</em></p>';
     }
-
 }

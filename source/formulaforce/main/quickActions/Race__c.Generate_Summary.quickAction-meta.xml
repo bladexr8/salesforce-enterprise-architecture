@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Call Flow to AI Generate a Summary for an F1 Race</description>
+    <flowDefinition>Generate_F1_Race_Summary</flowDefinition>
+    <label>Generate Summary</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

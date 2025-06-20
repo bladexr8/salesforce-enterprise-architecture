@@ -134,6 +134,7 @@
 		<name>FlexiPage</name>
 	</types>
 	<types>
+		<members>Generate_F1_Race_Summary</members>
 		<members>Get_F1_Race_Data</members>
 		<name>Flow</name>
 	</types>
@@ -159,6 +160,10 @@
 		<members>FormulaForceRaceAnalytics</members>
 		<members>FormulaForceRaceManagement</members>
 		<name>PermissionSet</name>
+	</types>
+	<types>
+		<members>Race__c.Generate_Summary</members>
+		<name>QuickAction</name>
 	</types>
 	<version>64.0</version>
 </Package>

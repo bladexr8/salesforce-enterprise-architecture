@@ -1,10 +1,13 @@
 <template>
     <lightning-card title="Race Summary" icon-name="standard:article">
         <div class="slds-p-horizontal_medium slds-p-bottom_medium">
-            <template if:true={hasContent}>
-                <div class="markdown-content" lwc:dom="manual"></div>
+            <template lwc:if={hasContent}>
+                <lightning-formatted-rich-text 
+                    value={renderedMarkdown}
+                    disable-linkify="false">
+                </lightning-formatted-rich-text>
             </template>
-            <template if:false={hasContent}>
+            <template lwc:else>
                 <div class="slds-text-align_center slds-p-vertical_large">
                     <lightning-icon 
                         icon-name="utility:info" 
