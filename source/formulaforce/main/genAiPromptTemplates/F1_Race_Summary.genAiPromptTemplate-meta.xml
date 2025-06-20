@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
-    <activeVersionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_2</activeVersionIdentifier>
+    <activeVersionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_5</activeVersionIdentifier>
     <description>Use AI to generate a summary of an F1 race.</description>
     <developerName>F1_Race_Summary</developerName>
     <masterLabel>F1 Race Summary</masterLabel>
@@ -50,6 +50,148 @@ Race URL:
             <referenceName>Flow:Get_F1_Race_Data</referenceName>
         </templateDataProviders>
         <versionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a support representative who is tasked with creating a short summary of a Formula One Motorsport Race. Your target audience are Formula One Race Enthusiasts who want to read a progressive description of a race from start to finish. The summary should use relevant grounded data from the system combined with commentary from the AI Model or Internet Sources where applicable. Also use information from the Race URL Field on the Race record if accessible.
+
+The following information should be mentioned in the Race Summary:
+
+Pole Position Winning Driver - this can be found in the Race Data Qualifying records where the Position Field has a value of 1. Also mention the time achieved in the Qualifying 3 Time field.
+
+Fastest Lap Driver - this can be found in the Race Data Lap Times records with the Miliseconds field with the lowest value. Also mention the lap time achieved in the Time field. Ensure that the name of the driver for the Fastest Lap record is used.
+
+Podium Drivers - these are the drivers who have finished first, second and third in the race. These can be found in the Race Data Driver Result records where the Position Order field has a value of 1 for the winning driver, 2 for the second place finishing driver, and 3 for the third place finishing driver.
+
+Winning Team - this is the team who achieved the most points in the race. These can be found in the Race Data Team Results records with the highest value in the Championship Points column.
+
+Generate the summary in Rich Text format.
+
+&quot;&quot;&quot;
+Race Data:
+{!$Flow:Get_F1_Race_Data.Prompt}
+
+Race URL:
+{!$Input:Race__c.Race_URL__c}
+
+&quot;&quot;&quot;
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Race__c</definition>
+            <referenceName>Input:Race__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>flow://Get_F1_Race_Data</definition>
+            <parameters>
+                <definition>SOBJECT://Race__c</definition>
+                <isRequired>true</isRequired>
+                <parameterName>RelatedEntity</parameterName>
+                <valueExpression>{!$Input:Race__c}</valueExpression>
+            </parameters>
+            <referenceName>Flow:Get_F1_Race_Data</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an experienced Formula 1 Racing Journalist who is tasked with creating a short summary of a Formula One Motorsport Race. Your target audience are Formula One Race Enthusiasts who want to read a progressive description of a race from start to finish, including highlights and key events such as collisions, accidents, crashes, disqualifications, safety cars, driver or team penalties and mechanical failures which have affected the outcome of the race. The summary should use relevant grounded data from the system combined with additional commentary from the AI Model or Internet Sources where applicable. Also use information from the Race URL Field on the Race record if accessible.
+
+The following information should be specifically mentioned in the Race Summary along with the race commentary:
+
+Pole Position Winning Driver - this can be found in the Race Data Qualifying records where the Position Field has a value of 1. Also mention the time achieved in the Qualifying 3 Time field.
+
+Fastest Lap Driver - this can be found in the Race Data Fastest Lap Time record. Also mention the lap time achieved in the Time field. Ensure that the name of the driver for the Fastest Lap record is used and the lap it was achieved.
+
+Podium Drivers - these are the drivers who have finished first, second and third in the race. These can be found in the Race Data Driver Result records where the Position Order field has a value of 1 for the winning driver, 2 for the second place finishing driver, and 3 for the third place finishing driver.
+
+Winning Team - this is the team who achieved the most points in the race. These can be found in the Race Data Team Results records with the highest value in the Championship Points column.
+
+Generate the summary in Rich Text format compatible with a Salesforce Platform Rich Text field.
+
+&quot;&quot;&quot;
+Race Data:
+{!$Flow:Get_F1_Race_Data.Prompt}
+
+Race URL:
+{!$Input:Race__c.Race_URL__c}
+
+&quot;&quot;&quot;
+
+If no Pit Stop records are available in the Race Data make no mention of Pit Stops in the generated race summary.
+If no Fastest Lap records are available in the Race Data make no mention of the Fastest Lap in the generated race summary.
+If no Qualifying records are available in the Race Data make no mention of the Pole Position winner in the generated race summary.
+Limit the summary to no more than 1000 words and do not address any content or generate answers that you don&apos;t have complete data on.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Race__c</definition>
+            <referenceName>Input:Race__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>flow://Get_F1_Race_Data</definition>
+            <parameters>
+                <definition>SOBJECT://Race__c</definition>
+                <isRequired>true</isRequired>
+                <parameterName>RelatedEntity</parameterName>
+                <valueExpression>{!$Input:Race__c}</valueExpression>
+            </parameters>
+            <referenceName>Flow:Get_F1_Race_Data</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_4</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an experienced Formula 1 Racing Journalist who is tasked with creating a short summary of a Formula One Motorsport Race. Your target audience are Formula One Race Enthusiasts who want to read a progressive description of a race from start to finish, including highlights and key events such as collisions, accidents, crashes, disqualifications, safety cars, driver or team penalties and mechanical failures which have affected the outcome of the race. The summary should use relevant grounded data from the system combined with additional commentary from the AI Model or Internet Sources where applicable. Also use information from the Race URL Field on the Race record if accessible.
+
+The following information should be specifically mentioned in the Race Summary along with the race commentary:
+
+Pole Position Winning Driver - this can be found in the Race Data Qualifying records where the Position Field has a value of 1. Also mention the time achieved in the Qualifying 3 Time field.
+
+Fastest Lap Driver - this can be found in the Race Data Fastest Lap Time record. Also mention the lap time achieved in the Time field. Ensure that the name of the driver for the Fastest Lap record is used and the lap it was achieved. The finishing position for the Fastest Lap Driver can be found in the Race Data Driver Result records in the Race Position field for the driver.
+
+Podium Drivers - these are the drivers who have finished first, second and third in the race. These can be found in the Race Data Driver Result records where the Position Order field has a value of 1 for the winning driver, 2 for the second place finishing driver, and 3 for the third place finishing driver.
+
+Winning Team - this is the team who achieved the most points in the race. These can be found in the Race Data Team Results records with the highest value in the Championship Points column. Also mention the second and third finishing teams with the second highest and third highest Championship Points respectively.
+
+&quot;&quot;&quot;
+Race Data:
+{!$Flow:Get_F1_Race_Data.Prompt}
+
+Race URL:
+{!$Input:Race__c.Race_URL__c}
+
+&quot;&quot;&quot;
+
+If no Pit Stop records are available in the Race Data make no mention of Pit Stops in the generated race summary.
+If no Fastest Lap records are available in the Race Data make no mention of the Fastest Lap in the generated race summary.
+If no Qualifying records are available in the Race Data make no mention of the Pole Position winner in the generated race summary.
+Include a link to the Race URL supplied in the generated summary.
+Limit the summary to no more than 1000 words and do not address any content or generate answers that you don&apos;t have complete data on.
+Generate the summary in a plain text format.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Race__c</definition>
+            <referenceName>Input:Race__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultBedrockAnthropicClaude37Sonnet</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>flow://Get_F1_Race_Data</definition>
+            <parameters>
+                <definition>SOBJECT://Race__c</definition>
+                <isRequired>true</isRequired>
+                <parameterName>RelatedEntity</parameterName>
+                <valueExpression>{!$Input:Race__c}</valueExpression>
+            </parameters>
+            <referenceName>Flow:Get_F1_Race_Data</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6OrCIcTROPpeRtzkm8McpJ+aRQy+n5DfVh2DK9sKLmE=_5</versionIdentifier>
     </templateVersions>
     <type>einstein_gpt__fieldCompletion</type>
     <visibility>Global</visibility>

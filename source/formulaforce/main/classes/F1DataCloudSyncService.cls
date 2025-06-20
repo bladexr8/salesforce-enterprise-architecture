@@ -206,7 +206,7 @@ public with sharing class F1DataCloudSyncService {
                     Qualifying_Date__c = f1Race.quali_date__c,
                     Qualifying_Time__c = f1Race.quali_time__c,
                     Race_Date__c = f1Race.date__c,
-                    Name = f1Race.name__c,
+                    Name = Integer.valueOf(f1Race.year__c).toString() + ' ' + f1Race.name__c,
                     Race_Time__c = f1Race.time__c,
                     Race_URL__c = f1Race.url__c,
                     Round__c = f1Race.round__c,
